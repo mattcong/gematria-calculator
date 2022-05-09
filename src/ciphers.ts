@@ -1,4 +1,4 @@
-import { SimpleAlphabet, BaseAlphabet, ModularAlphabet, IncrementalAlphabet } from "./alphabets"
+import { SimpleAlphabet, BaseAlphabet, ModularAlphabet, IncrementalAlphabet } from "./alphabets";
 
 
 const simpleAlphabet: SimpleAlphabet = new SimpleAlphabet()
@@ -9,4 +9,16 @@ const pythagoreanAlphabet: ModularAlphabet = new ModularAlphabet(9)
 
 const hebrewAlphabet: IncrementalAlphabet = new IncrementalAlphabet([1, 10, 100])
 
-export { simpleAlphabet, base6Alphabet, pythagoreanAlphabet, hebrewAlphabet }
+
+export type Cipher = 
+| "Simple Gematria" 
+| "Base 6 Gematria"  
+| "Pythagorean Gematria" 
+| "Hebrew Gematria"
+
+export const ciphers = {
+    "Simple Gematria": simpleAlphabet.use(),
+    "Base 6 Gematria": base6Alphabet.use(),
+    "Pythagorean Gematria": pythagoreanAlphabet.use(),
+    "Hebrew Gematria": hebrewAlphabet.use(),
+}
