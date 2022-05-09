@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { Alphabet } from "./alphabets"
+import { Alphabet } from "./alphabets";
 
 
 export function calculate(s: string, alphabet: Alphabet): number {
