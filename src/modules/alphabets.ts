@@ -11,7 +11,7 @@ export class SimpleAlphabet {
             this.alphabet[String.fromCharCode(i + 64)] = i
         }
     }
-
+    
     use() {
         return this.alphabet
     }

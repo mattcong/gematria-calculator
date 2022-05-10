@@ -1,5 +1,5 @@
-import { calculate } from '../calculate'
-import { simpleAlphabet, base6Alphabet, pythagoreanAlphabet, hebrewAlphabet } from "../ciphers"
+import { calculate } from '../modules/calculate'
+import { simpleAlphabet, base6Alphabet, pythagoreanAlphabet, hebrewAlphabet } from "../modules/ciphers"
 
 
 test("calculate simple value", () => {

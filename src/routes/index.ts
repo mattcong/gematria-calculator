@@ -1,7 +1,8 @@
 import express from 'express';
-import { Alphabet } from '../alphabets';
-import { ciphers, Cipher } from '../ciphers';
-import { calculate, wordList, findShared } from '../calculate';
+import { Alphabet } from '../modules/alphabets';
+import { ciphers, Cipher } from '../modules/ciphers';
+import { calculate, wordList, findShared } from '../modules/calculate';
+import {displayRandomWords} from '../modules/sortwords';
 
 
 const index = express.Router()
@@ -15,7 +16,8 @@ index.post("/", (req, res) => {
     const cipher: Cipher = req.body.cipher
     const alphabet: Alphabet = ciphers[cipher]
     const inputValue = calculate(input, alphabet)
-    const sharedWords = findShared(wordList, inputValue, alphabet)
+    const shared = findShared(wordList, inputValue, alphabet)
+    const sharedWords = displayRandomWords(shared)
     
     res.render("result", {
         title,
