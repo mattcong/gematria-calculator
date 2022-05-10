@@ -15,7 +15,7 @@ export function calculate(s: string, alphabet: Alphabet): number {
 export function findShared(words: string[], value: number, alphabet: Alphabet) {
     const sharedWords: string[] = []
     words.forEach(e => {if (value === calculate(e, alphabet)) { sharedWords.push(e) }}) 
-    return sharedWords.toString().replaceAll(',', ', ')
+    return sharedWords
 }
 
 export const wordList = fs.readFileSync('./public/british-english.txt', 'utf-8').toString().split(' \n')
