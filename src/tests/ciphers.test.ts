@@ -1,4 +1,4 @@
-import { Alphabet, SimpleAlphabet, BaseAlphabet, ModularAlphabet, IncrementalAlphabet } from '../alphabets'
+import { Alphabet, SimpleAlphabet, BaseAlphabet, ModularAlphabet, IncrementalAlphabet } from '../modules/alphabets'
 
 
 test("create simple alphabet", () => {
