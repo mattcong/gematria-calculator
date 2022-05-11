@@ -1,43 +1,131 @@
+/* COLOURS */
+
+:root {
+    --bg-1: white;
+    --element-1-border: rgba(255, 255, 255, 0.256);
+    --element-bg-1: rgba(255, 255, 255, 0.078);
+    --element-bg-1-hover: rgba(255, 255, 255, 0.034);
+
+    --bg-2: #262626;
+    /* --element-2: #16abb5; */
+    /* --element-2: #cc2f2f; */
+    --element-2: #3ea13b;
+    --element-border-2: rgba(129, 129, 129, 0.566);
+    --element-bg-2: rgba(0, 0, 0, 0.096);
+    --element-bg-2-hover: rgba(161, 161, 161, 0.055);
+}
+
+body {
+    background-color: var(--bg-2);
+}
+
+body,
+select,
+input,
+button {
+    color: var(--element-2);
+}
+
+.input {
+    border: 1px solid var(--element-border-2);
+    background-color: var(--element-bg-2);
+}
+
+.input:active {
+    background-color: var(--element-bg-2);
+}
+
+.select-menu {
+    border: 1px solid var(--element-border-2);
+    color: var(--element-2);
+    background-color: var(--element-bg-2);
+}
+
+.mid-button {
+    background-color: var(--element-bg-2);
+    color: var(--element-2);
+    border: 1px solid var(--element-border-2);
+}
+
+.mid-button:hover {
+    background-color: var(--element-bg-2-hover);
+}
+
+/* TYPEOGRAPHY */
+
 @font-face {
     font-family: Neue;
     src: url(./fonts/NeueHaasDisplayMedium.ttf);
 }
 
 :root {
-    --element-bg-colour: rgba(255, 255, 255, 0.418);
-    --element-bg-color-light: rgba(255, 255, 255, 0.461);
-    --element-bg-color-dark: rgba(255, 255, 255, 0.315);
-    --element-color: rgba(0, 0, 0, 0.689);
-    --element-color-light: rgba(0, 0, 0, 0.484);
+    --fs-nav: clamp(0.5rem, 0.35rem + 0.5vw, 1.5rem);
+    --fs-body-small: clamp(0.6rem, 0.6rem + 0.6vw, 2rem);
+    --fs-body-mid: clamp(0.8rem, 1rem + 0.7vw, 2.7rem);
+    --fs-body-large: clamp(0.8rem, 1.2rem + 1.5vw, 4rem);
 }
 
-/* TYPEOGRAPHY */
-
-body, select, input, button {
+body,
+select,
+input,
+button {
     font-family: Neue, sans-serif;
     font-weight: 600;
-    color: var(--element-color)
+    letter-spacing: 0.5px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 .select-menu {
-    font-size: 20px;
+    font-size: var(--fs-body-small);
 }
 
-button, body {
-    font-size: 22px;
+.form-wrap,
+button {
+    font-size: calc(var(--fs-body-mid) - 2px);
 }
 
 .input {
-    font-size: 25px;
+    font-size: var(--fs-body-mid);
+}
+
+.result-wrap {
+    font-size: var(--fs-body-large);
+    line-height: calc(var(--fs-body-large) + 1.1vw);
+}
+
+.footer {
+    font-size: var(--fs-nav);
+}
+
+/* STRUCTURE */
+
+.form-wrap {
+    width: clamp(200px, 60%, 1500px);
+    height: 50%;
+    margin: 15% auto;
+    user-select: none;
+}
+
+.result-wrap {
+    width: 90%;
+    margin: 5% auto;
+}
+
+.footer {
+    display: grid;
+    grid-template-columns: 0.5fr 0.55fr 0.5fr 3fr 0.5fr;
+    width: 92%;
+    position: fixed;
+    bottom: 0;
+    padding: 2% 0 2% 5%;
+    user-select: none;
 }
 
 /* FORMS */
-
-.form-wrap {
-    width: 60%;
-    height: 50%;
-    margin: 15% auto;
-}
 
 .input-wrap {
     border: none;
@@ -45,39 +133,30 @@ button, body {
     display: flex;
     justify-content: space-between;
     margin: 2% 0 3% 0;
+    user-select: none;
 }
 
 .input {
-    width: clamp(400px, 47vw, 800px);
-    height: 50px;
-    border: 1px solid var(--element-color-light);
-    background-color: var(--element-bg-colour);
-    padding: 3px 20px;
+    width: clamp(400px, 47vw, 900px);
+    height: calc(var(--fs-body-mid) + 25px);
+    padding: 0.3% 1.5%;
 }
 
-.input:focus, select:focus, button:focus {
+.input:focus,
+select:focus,
+button:focus {
     outline: none;
 }
 
 .select-menu {
     padding: 10px;
     margin: 0 0 0 10px;
-    border: 1px solid var(--element-color-light);
-    color: var(--element-color);
-    background-color: var(--element-bg-colour);
 }
 
 /* BUTTONS */
 
 .mid-button {
-    background-color: var(--element-bg-colour);
-    color: var(--element-color);
-    border: 1px solid var(--element-color-light);
-    padding: 10px 20px;
+    padding: calc(var(--fs-body-mid) - 19px) calc(var(--fs-body-mid) - 4px);
     margin: 0 0 0 20px;
     cursor: pointer;
-}
-
-.mid-button:hover {
-    background-color: var(--element-bg-color-dark);
 }
