@@ -70,7 +70,6 @@ select,
 input,
 button {
     font-family: Neue, sans-serif;
-    font-weight: 600;
     letter-spacing: 0.5px;
 }
 
@@ -110,6 +109,13 @@ button {
     user-select: none;
 }
 
+@media (max-width: 600px) {
+    .form-wrap {
+        width: 90%;
+        margin: 30% auto;
+    }
+}
+
 .result-wrap {
     width: 90%;
     margin: 5% auto;
@@ -121,8 +127,14 @@ button {
     width: 92%;
     position: fixed;
     bottom: 0;
-    padding: 2% 0 2% 5%;
+    padding: 2% 1% 2% 5%;
     user-select: none;
+}
+
+@media (max-width: 600px) {
+    .footer {
+        grid-template-columns: 0.5fr 0.55fr 0.5fr 1fr 0.5fr;
+    }
 }
 
 /* FORMS */

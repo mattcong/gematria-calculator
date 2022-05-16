@@ -1,16 +1,17 @@
-function format(words: string[]) {
-    if (words.length > 21) { return `This is shared by: ${words.toString().replaceAll(",", ", ")} and ${words.length - 20} more.` }
-    if (words.length > 1 && words.length < 21) {
-        const result = words.toString().replaceAll(",", ", ")
+function format(displayWords: string[], totalWords: number) {
+    if (totalWords > 20) { return `This is shared by: ${displayWords.toString().replaceAll(",", ", ")} and ${totalWords - 20} more.` }
+    if (totalWords > 1 && totalWords < 21) {
+        const result = displayWords.toString().replaceAll(",", ", ")
         const replace = result.lastIndexOf(", ")
         return `This is shared by: ${result.substring(0, replace) + " and" + result.substring(replace + 1)}.`
     }
-    if (words.length === 1) { return `This is shared by: ${words.toString()}.` }
-    if (!words.length) { return `No single word shares this value.` }
+    if (totalWords === 1) { return `This is shared by: ${displayWords.toString()}.` }
+    if (!totalWords) { return `No single word shares this value.` }
 }
 
 
 export function displayRandomWords(words: string[]) {
+    const totalWords: number = words.length
     let random = []
 
     if (words.length > 20) {
@@ -22,5 +23,5 @@ export function displayRandomWords(words: string[]) {
             random.push(words[Math.floor(Math.random() * words.length)])
         }
     }
-    return format(random)
+    return format(random, totalWords)
 }
