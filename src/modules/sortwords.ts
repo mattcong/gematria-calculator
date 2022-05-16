@@ -1,5 +1,5 @@
 function format(displayWords: string[], totalWords: number) {
-    if (totalWords > 20) { return `This is shared by: ${displayWords.toString().replaceAll(",", ", ")} and ${totalWords - 20} more.` }
+    if (totalWords > 20) { return `This is shared by: ${displayWords.toString().replaceAll(",", ", ")} and ${totalWords - displayWords.length} more.` }
     if (totalWords > 1 && totalWords < 21) {
         const result = displayWords.toString().replaceAll(",", ", ")
         const replace = result.lastIndexOf(", ")
@@ -23,5 +23,5 @@ export function displayRandomWords(words: string[]) {
             random.push(words[Math.floor(Math.random() * words.length)])
         }
     }
-    return format(random, totalWords)
+    return format([...new Set(random)], totalWords)
 }
