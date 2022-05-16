@@ -1,24 +1,34 @@
-import { SimpleAlphabet, BaseAlphabet, ModularAlphabet, IncrementalAlphabet } from "./alphabets";
+import { SimpleAlphabet, MultipleAlphabet, ModularAlphabet, IncrementalAlphabet } from "./alphabets";
 
 
-export const simpleAlphabet: SimpleAlphabet = new SimpleAlphabet()
+const reverse = true
+const regular = false
 
-export const base6Alphabet: BaseAlphabet = new BaseAlphabet(6)
+export const standardAlphabet: IncrementalAlphabet = new IncrementalAlphabet([1, 10, 100], regular)
 
-export const pythagoreanAlphabet: ModularAlphabet = new ModularAlphabet(9)
+export const reverseStandardAlphabet: IncrementalAlphabet = new IncrementalAlphabet([1, 10, 100], reverse)
 
-export const hebrewAlphabet: IncrementalAlphabet = new IncrementalAlphabet([1, 10, 100])
+export const pythagoreanAlphabet: ModularAlphabet = new ModularAlphabet(9, regular)
+
+export const reversePythagoreanAlphabet: ModularAlphabet = new ModularAlphabet(9, reverse)
+
+export const simpleAlphabet: SimpleAlphabet = new SimpleAlphabet(regular)
+
+export const multiple6Alphabet: MultipleAlphabet = new MultipleAlphabet(6, regular)
 
 
-export type Cipher = 
-| "Simple Gematria" 
-| "Base 6 Gematria" 
-| "Pythagorean Gematria" 
-| "Hebrew Gematria"
+export type Cipher =
+    | "Standard Gematria"
+    | "Pythagorean Gematria"
+    | "Simple Gematria"
+    | "Multiple 6 Gematria"
+
 
 export const ciphers = {
-    "Simple Gematria": simpleAlphabet.use(),
-    "Base 6 Gematria": base6Alphabet.use(),
+    "Standard Gematria": standardAlphabet.use(),
+    "Reverse Standard Gematria": reverseStandardAlphabet.use(),
     "Pythagorean Gematria": pythagoreanAlphabet.use(),
-    "Hebrew Gematria": hebrewAlphabet.use(),
+    "Reverse Pythagorean Gematria": reversePythagoreanAlphabet.use(),
+    "Simple Gematria": simpleAlphabet.use(),
+    "Multiple 6 Gematria": multiple6Alphabet.use()
 }
