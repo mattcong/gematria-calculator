@@ -1,43 +1,36 @@
-# Gematria Calculator
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-Web app that calculates the value of a word and returns words that share the same value. 
+## Getting Started
 
-## Stack
+First, run the development server:
 
-TypeScript, Node (Express, EJS), CSS, Heroku.
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-## Ciphers
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-The app uses various traditional and non-traditional ciphers:
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-Standard / Reverse Standard 
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-![standard](https://user-images.githubusercontent.com/80398444/168562813-b3e49e03-3ea1-4683-819e-a5d5b253895a.jpg)
-![reversestandard](https://user-images.githubusercontent.com/80398444/168562832-c4e4d521-9107-4dfb-925f-657b4f35f658.jpg)
+## Learn More
 
-Pythagorean (aka Reduction) / Reverse Pythagorean
-![pythagorean](https://user-images.githubusercontent.com/80398444/168562862-bcdada20-c0d8-498e-a03a-9ae59774e622.jpg)
-![reversepythagorean](https://user-images.githubusercontent.com/80398444/168562878-193efaeb-f267-470b-bcdc-b6a84575c8b5.jpg)
+To learn more about Next.js, take a look at the following resources:
 
-Simple (aka Ordinal)
-![simple](https://user-images.githubusercontent.com/80398444/168562938-76cd19cc-a288-4307-93f7-3dd94f7f7448.jpg)
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-Multiple 6 (often called Base 6 Gematria online, renamed here so as not to be confused with base number systems)
-![multiplesix](https://user-images.githubusercontent.com/80398444/168562996-999d7d42-18b2-4eaa-a7f5-2feed0442ff2.jpg)
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-Ciphers are created from alphabet classes that assign A - Z values according to specific patterns.
+## Deploy on Vercel
 
-For example, the Pythagorean cipher is created by passing `9` as a modulus into the `ModularAlphabet` constructor, making a pattern wrapping from 1 - 9 and ending at 8 on Z.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-The Standard cipher increments from A - Z in steps of 1 - 9, 10 - 90, 100 - 800. This is created by passing `[1, 10, 100]` as an argument to the `IncrementalAlphabet` constructor, where each element is the amount by which to increment and the number of elements determines the length of each step. `[30, 60, 30, 90]` would produce a cipher incrementing from A - Z in steps of 30 - 210, 60 - 420, 30 - 210, 90 - 450. Negative increments can also be used.
-
-This means any number of custom ciphers can be made using these patterns (even though they have no basis in historical exegesis). 
-
-## Features 🔜
-
-- Add base class that creates alphabet values from radix.
-- Complete information pages. 
-- Link to all shared words on result page. 
-- Search history.
-- Light / dark theme toggle. 
-
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

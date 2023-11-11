@@ -9,7 +9,7 @@ const index = express.Router()
 
 const title = "Gematria Calculator"
 
-index.get("/", (req, res) => { res.render("calculate", { title }) })
+index.get("/", (req, res) => { res.status(200).render("calculate", { title }) })
 
 index.post("/", (req, res) => {
     const input: string = req.body.calculate
@@ -17,9 +17,8 @@ index.post("/", (req, res) => {
     const alphabet: Alphabet = ciphers[cipher]
     const inputValue = calculate(input, alphabet)
     const shared = findShared(wordList, inputValue, alphabet)
-    const sharedWords = displayRandomWords(shared)
-    
-    res.render("result", {
+    const sharedWords = displayRandomWords(shared, input)
+    res.status(200).render("result", {
         title,
         input,
         cipher,
