@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import MainInput from "../components/MainInput"
 import DisplayWords from "../components/DisplayWords"
 import Footer from "../components/BottomNav"
@@ -10,11 +10,7 @@ export default function Home() {
   const [word, setWord] = useState("")
   const [value, setValue] = useState("")
   const [words, setWords] = useState<[] | string[]>([])
-
-  useEffect(() => {
-    console.log(value)
-  }, [value])
-
+  
   return (
     <>
       <div className="container">

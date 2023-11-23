@@ -13,12 +13,14 @@ export function calculate(word: string, alphabet: Alphabet): number {
   return result.reduce((a, b) => a + b, 0)
 }
 
-export function findShared(words: string[], value: number, alphabet: Alphabet) {
-  const sharedWords: string[] = []
-  words.forEach((e) => {
-    if (value === calculate(e, alphabet)) {
-      sharedWords.push(e)
+export function preCalculateValues(words: string[], alphabet: Alphabet) {
+  const wordMap = new Map()
+  words.forEach((word) => {
+    const wordValue = calculate(word, alphabet)
+    if (!wordMap.has(wordValue)) {
+      wordMap.set(wordValue, [])
     }
+    wordMap.get(wordValue).push(word)
   })
-  return sharedWords
+  return wordMap
 }
