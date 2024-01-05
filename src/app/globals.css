@@ -62,6 +62,10 @@ button {
   background-color: #5e5e5e0e;
 }
 
+.footer {
+  background-color: var(--bg-2);
+}
+
 /* TYPEOGRAPHY */
 
 @font-face {
@@ -104,7 +108,7 @@ button {
 
 .result-wrap {
   font-size: var(--fs-body-large);
-  line-height: calc(var(--fs-body-large) + 1.1vw);
+  line-height: calc(var(--fs-body-large) + 0.8vw);
 }
 
 .footer {
@@ -135,10 +139,11 @@ button {
 .footer {
   display: grid;
   grid-template-columns: 0.5fr 0.55fr 0.5fr 3fr 0.5fr;
-  width: 92%;
   position: fixed;
+  left: 0;
+  right: 0;
   bottom: 0;
-  padding: 2% 1% 2% 5%;
+  padding: 12px 4% 14px;
   user-select: none;
 }
 

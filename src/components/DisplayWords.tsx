@@ -1,3 +1,5 @@
+import FormattedWords from "./FormattedWords"
+
 type DisplayWordsProps = {
   cipher: string
   word: string
@@ -7,12 +9,6 @@ type DisplayWordsProps = {
 }
 
 const DisplayWords = ({ cipher, word, value, words, setValue }: DisplayWordsProps) => {
-  const displayWords = 40
-  const display = words.length > displayWords ? words.slice(0, displayWords) : words
-
-  const lastWord = (i: number) => i + 1 === display.length
-  const penultimateWord = (i: number) => i + 1 === display.length - 1
-
   return (
     <>
       <button className="small-button" onClick={() => setValue("")}>
@@ -24,24 +20,7 @@ const DisplayWords = ({ cipher, word, value, words, setValue }: DisplayWordsProp
         </p>
         {words.length ? (
           <p>
-            This is shared by:{" "}
-            {display.map((word, i) => {
-              return (
-                <span key={i}>
-                  {`${
-                    lastWord(i)
-                      ? words.length > displayWords
-                        ? `and ${words.length - display.length} more.`
-                        : words.length > 1
-                        ? `and ${word}.`
-                        : `${word}.`
-                      : penultimateWord(i)
-                      ? `${word} `
-                      : `${word}, `
-                  } `}
-                </span>
-              )
-            })}
+            This is shared by: <FormattedWords words={words} />
           </p>
         ) : (
           <p>No single word shares this value.</p>
