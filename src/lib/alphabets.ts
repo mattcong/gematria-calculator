@@ -1,4 +1,4 @@
-export type Alphabet = { [key: string]: number }
+import { Alphabet } from "../../types/Alphabet"
 
 export class SimpleAlphabet {
   alphabet: Alphabet

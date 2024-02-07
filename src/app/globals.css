@@ -122,6 +122,9 @@ button {
   height: 50%;
   margin: 15% auto;
   user-select: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 @media (max-width: 600px) {
@@ -159,8 +162,8 @@ button {
   border: none;
   height: fit-content;
   display: flex;
+  gap: 8px;
   justify-content: space-between;
-  margin: 2% 0 3% 0;
   user-select: none;
 }
 
@@ -179,7 +182,6 @@ a:focus {
 
 .select-menu {
   padding: 10px;
-  margin: 0 0 0 10px;
   cursor: pointer;
 }
 
@@ -193,16 +195,15 @@ a:focus {
 }
 
 .mid-button {
-  padding: calc(var(--fs-body-mid) - 19px) calc(var(--fs-body-mid) - 4px);
-  margin: 0 0 0 20px;
+  padding: 10px 25px;
   cursor: pointer;
   width: 80px;
 }
 
 .small-button {
-  padding: 10px 0;
+  padding: 10px 25px;
   cursor: pointer;
-  width: 90px;
+  font-size: var(--fs-body-small);
 }
 
 /* LOADING SPINNER */
