@@ -1,26 +1,26 @@
+import { CalculationResult } from "../../types/CalculationResult"
 import FormattedWords from "./FormattedWords"
 
 type DisplayWordsProps = {
-  cipher: string
-  word: string
-  value: string
-  words: string[]
-  setValue: React.Dispatch<React.SetStateAction<string>>
+  calculationResult: CalculationResult
+  setCalculationResult: (data: null) => void
 }
 
-const DisplayWords = ({ cipher, word, value, words, setValue }: DisplayWordsProps) => {
+const DisplayWords = ({ calculationResult, setCalculationResult }: DisplayWordsProps) => {
+  const { word, cipher, value, sharedWords } = calculationResult
+
   return (
     <>
-      <button className="small-button" onClick={() => setValue("")}>
+      <button className="small-button" onClick={() => setCalculationResult(null)}>
         Back
       </button>
       <div className="result-wrap">
         <p>
           The {cipher} value of {word} is {value}.
         </p>
-        {words.length ? (
+        {sharedWords.length ? (
           <p>
-            This is shared by: <FormattedWords words={words} />
+            This is shared by: <FormattedWords words={sharedWords} />
           </p>
         ) : (
           <p>No single word shares this value.</p>

@@ -1,4 +1,4 @@
-import { Alphabet } from "./alphabets"
+import { Alphabet } from "../../types/Alphabet"
 
 export function calculate(word: string, alphabet: Alphabet): number {
   let result: number[] = []
@@ -13,14 +13,14 @@ export function calculate(word: string, alphabet: Alphabet): number {
   return result.reduce((a, b) => a + b, 0)
 }
 
-export function preCalculateValues(words: string[], alphabet: Alphabet) {
-  const wordMap = new Map()
-  words.forEach((word) => {
-    const wordValue = calculate(word, alphabet)
-    if (!wordMap.has(wordValue)) {
-      wordMap.set(wordValue, [])
+export function preCalculateValues(wordList: string[], alphabet: Alphabet) {
+  const words: { [key: string]: string[] } = {}
+  wordList.forEach((word) => {
+    const wordValue = calculate(word, alphabet).toString()
+    if (!words[wordValue]) {
+      words[wordValue] = []
     }
-    wordMap.get(wordValue).push(word)
+    words[wordValue].push(word)
   })
-  return wordMap
+  return words
 }
