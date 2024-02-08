@@ -12,10 +12,10 @@ const MainInput = ({
 }: MainInputProps) => {
   const [loading, setLoading] = useState(false)
   const [alphabetLoading, setAlphabetLoading] = useState(true)
-  const [showTexts, setShowTexts] = useState(false)
   const [cipher, setCipher] = useState("Standard Gematria")
-  const [text, setText] = useState("")
+  const [text, setText] = useState("default")
   const [word, setWord] = useState("")
+  const [showTexts, setShowTexts] = useState(false)
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value)
@@ -42,10 +42,6 @@ const MainInput = ({
     setCalculationResult(data)
     setLoading(false)
   }
-
-  useEffect(() => {
-    setText("")
-  }, [])
 
   useEffect(() => {
     setCalculatedAlphabets({})
@@ -85,13 +81,10 @@ const MainInput = ({
             {showTexts ? (
               <>
                 <label htmlFor="cipher">using</label>
-                <select
-                  className="select-menu"
-                  value={text}
-                  onChange={handleTextSelect}
-                >
-                  <option value="none">No Text</option>
+                <select className="select-menu" value={text} onChange={handleTextSelect}>
+                  <option value="default">No Text</option>
                   <option value="kjv">Holy Bible (KJV)</option>
+                  <option value="apocrypha">Apocrypha</option>
                 </select>
               </>
             ) : (
