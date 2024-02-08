@@ -11,7 +11,7 @@ const DisplayWords = ({ calculationResult, setCalculationResult }: DisplayWordsP
 
   return (
     <>
-      <button className="small-button" onClick={() => setCalculationResult(null)}>
+      <button className="button" onClick={() => setCalculationResult(null)}>
         Back
       </button>
       <div className="result-wrap">
