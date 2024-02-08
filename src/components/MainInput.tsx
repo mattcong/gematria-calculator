@@ -29,6 +29,8 @@ const MainInput = ({
 
   const showTextDropdown = () => setShowTexts(true)
 
+  const isLoading = loading || alphabetLoading
+
   const getAlphabet = async () => {
     setAlphabetLoading(true)
     await handleCalculateAlphabet(cipher, text)
@@ -60,35 +62,53 @@ const MainInput = ({
       <div className="form-wrap">
         <label htmlFor="calculation-input">Find the value of:</label>
         <div className="input-wrap">
-          <input className="input" type="text" value={word} onChange={handleInputChange} required />
-          <button className="mid-button" type="submit">
-            {loading || alphabetLoading ? <LoadingSpinner /> : "Go"}
+          <div className="input-border">
+            <input
+              className="input"
+              type="text"
+              value={word}
+              onChange={handleInputChange}
+              required
+              disabled={isLoading}
+            />
+          </div>
+          <button className="button" type="submit" disabled={isLoading}>
+            {isLoading ? <LoadingSpinner /> : "Go"}
           </button>
         </div>
-        <div style={{ display: "flex", gap: "12px" }}>
-          <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+        <div className="controls-container">
+          <div className="select-wrap">
             <label htmlFor="cipher">in</label>
-            <select className="select-menu" value={cipher} onChange={handleCipherSelect}>
-              <option value="Standard Gematria">Standard Gematria</option>
-              <option value="Reverse Standard Gematria">Reverse Standard</option>
-              <option value="Pythagorean Gematria">Pythagorean Gematria</option>
-              <option value="Reverse Pythagorean Gematria">Reverse Pythagorean</option>
-              <option value="Simple Gematria">Simple Gematria</option>
-              <option value="Multiple 6 Gematria">Multiple 6 Gematria</option>
-            </select>
+            <div className="select-menu-border">
+              <select className="select-menu" value={cipher} onChange={handleCipherSelect}>
+                <option value="Standard Gematria">Standard Gematria</option>
+                <option value="Reverse Standard Gematria">Reverse Standard</option>
+                <option value="Pythagorean Gematria">Pythagorean Gematria</option>
+                <option value="Reverse Pythagorean Gematria">Reverse Pythagorean</option>
+                <option value="Simple Gematria">Simple Gematria</option>
+                <option value="Multiple 6 Gematria">Multiple 6 Gematria</option>
+              </select>
+            </div>
           </div>
-          <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+          <div className="select-wrap">
             {showTexts ? (
               <>
                 <label htmlFor="cipher">using</label>
-                <select className="select-menu" value={text} onChange={handleTextSelect}>
-                  <option value="default">No Text</option>
-                  <option value="kjv">Holy Bible (KJV)</option>
-                  <option value="apocrypha">Apocrypha</option>
-                </select>
+                <div className="select-menu-border">
+                  <select className="select-menu" value={text} onChange={handleTextSelect}>
+                    <option value="default">No Text</option>
+                    <option value="kjv">Holy Bible (KJV)</option>
+                    <option value="apocrypha">Apocrypha</option>
+                  </select>
+                </div>
               </>
             ) : (
-              <button className="small-button" type="button" onClick={showTextDropdown}>
+              <button
+                className="button"
+                style={{ width: "100%" }}
+                type="button"
+                onClick={showTextDropdown}
+              >
                 Choose Text
               </button>
             )}

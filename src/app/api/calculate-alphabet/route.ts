@@ -21,19 +21,20 @@ export async function GET(req: NextRequest, res: NextResponse) {
     const cipher = `${url.searchParams.get("cipher")}`
     const text = `${url.searchParams.get("text")}`
 
-    const getFilePath = (fileName: string) => {
-      const basePath = process.env.NODE_ENV === "development" ? process.cwd() : "/var/task"
+    const localKjv = path.join(process.cwd(), "files", "bible-kjv.txt")
+    const prodKjv = "/var/task/files/bible-kjv.txt"
 
-      return path.join(basePath, "files", fileName)
-    }
+    const localApocrypha = path.join(process.cwd(), "files", "british-english.txt")
+    const prodApocrypha = "/var/task/files/british-english.txt"
 
-    const fileNameMap: { [key: string]: string } = {
-      kjv: "bible-kjv.txt",
-      apocrypha: "apocrypha.txt",
-      default: "british-english.txt",
-    }
+    const localDefault = path.join(process.cwd(), "files", "british-english.txt")
+    const prodDefault = "/var/task/files/british-english.txt"
 
-    const filePath = getFilePath(fileNameMap[text])
+    const kjvFile = process.env.NODE_ENV === "development" ? localKjv : prodKjv
+    const apocryphaFile = process.env.NODE_ENV === "development" ? localApocrypha : prodApocrypha
+    const defaultFile = process.env.NODE_ENV === "development" ? localDefault : prodDefault
+
+    const filePath = text === "kjv" ? kjvFile : text === "apocrypha" ? apocryphaFile : defaultFile
 
     const wordList = fs.readFileSync(filePath, "utf-8").toString().split("\n")
     const wordListMap = preCalculateValues(wordList, getCipher(cipher))
