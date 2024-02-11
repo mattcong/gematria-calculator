@@ -2,60 +2,61 @@ import { useEffect, useState } from "react"
 import LoadingSpinner from "./LoadingSpinner"
 import { CalculationResult } from "../../types/CalculationResult"
 import { WordListMap } from "../../types/WordListMap"
+import { SearchOptions } from "../../types/SearchOptions"
 
 const MainInput = ({
+  searchOptions,
+  setSearchOptions,
   handleCalculate,
   handleCalculateAlphabet,
   setCalculationResult,
   calculatedWordLists,
-  setCalculatedAlphabets,
 }: MainInputProps) => {
+  const { cipher, text } = searchOptions
+
   const [loading, setLoading] = useState(false)
-  const [alphabetLoading, setAlphabetLoading] = useState(true)
-  const [cipher, setCipher] = useState("Standard Gematria")
-  const [text, setText] = useState("default")
+  const [alphabetLoading, setAlphabetLoading] = useState(false)
   const [word, setWord] = useState("")
-  const [showTexts, setShowTexts] = useState(false)
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setWord(event.target.value)
-  }
-  const handleCipherSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setCipher(event.target.value)
-  }
-  const handleTextSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setText(event.target.value)
-  }
-
-  const showTextDropdown = () => setShowTexts(true)
-
-  const isLoading = loading || alphabetLoading
+  const [showTexts, setShowTexts] = useState(text && true)
 
   const getAlphabet = async () => {
     setAlphabetLoading(true)
-    await handleCalculateAlphabet(cipher, text)
+    await handleCalculateAlphabet(cipher, text || "")
     setAlphabetLoading(false)
   }
 
   const calculate = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setLoading(true)
-    const data = await handleCalculate(word, cipher, text)
+    const data = await handleCalculate(word, cipher, text || "")
     setCalculationResult(data)
     setLoading(false)
   }
 
-  useEffect(() => {
-    setCalculatedAlphabets({})
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setWord(event.target.value)
+  }
+  const handleCipherSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSearchOptions({ ...searchOptions, cipher: event.currentTarget.value })
+    if (Object.keys(calculatedWordLists).includes(cipher)) {
+      return
+    }
     getAlphabet()
-  }, [text])
+  }
+  const handleTextSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSearchOptions({ ...searchOptions, text: event.currentTarget.value })
+  }
+
+  const showTextDropdown = () => setShowTexts(true)
+
+  const isLoading = loading || alphabetLoading
 
   useEffect(() => {
     if (Object.keys(calculatedWordLists).includes(cipher)) {
       return
     }
     getAlphabet()
-  }, [cipher])
+  }, [cipher, text])
 
   return (
     <form onSubmit={calculate}>
@@ -119,11 +120,12 @@ const MainInput = ({
 }
 
 type MainInputProps = {
+  searchOptions: SearchOptions
+  setSearchOptions: (options: SearchOptions) => void
   handleCalculateAlphabet: (cipher: string, text: string) => Promise<CalculationResult>
   handleCalculate: (word: string, cipher: string, text: string) => Promise<CalculationResult>
   setCalculationResult: (data: CalculationResult) => void
   calculatedWordLists: WordListMap
-  setCalculatedAlphabets: any
 }
 
 export default MainInput
