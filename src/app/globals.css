@@ -1,4 +1,7 @@
-/* COLOURS */
+@font-face {
+  font-family: Neue;
+  src: url(../../public/fonts/NeueHaasDisplayMedium.ttf);
+}
 
 :root {
   --bg-1: white;
@@ -15,6 +18,19 @@
   --element-bg-2-hover: #a1a1a10e;
 
   --input-height: 50px;
+  --input-option-height: calc(var(--input-height) - 5px);
+
+  --fs-body-sm: 1.3rem;
+  --fs-body-md: 1.8rem;
+  --fs-body-large: 2.6rem;
+}
+
+@media (max-width: 720px) {
+  :root {
+    --fs-body-sm: 1.1rem;
+    --fs-body-md: 1.6rem;
+    --fs-body-large: 2.2rem;
+  }
 }
 
 body {
@@ -26,18 +42,6 @@ select,
 input,
 button {
   color: var(--element-2);
-}
-
-@font-face {
-  font-family: Neue;
-  src: url(../../public/fonts/NeueHaasDisplayMedium.ttf);
-}
-
-:root {
-  --fs-nav: clamp(0.5rem, 0.35rem + 0.5vw, 1.5rem);
-  --fs-body-small: clamp(0.8rem, 0.7rem + 0.6vw, 2rem);
-  --fs-body-mid: clamp(0.9rem, 1rem + 0.7vw, 2.7rem);
-  --fs-body-large: clamp(0.9rem, 1.2rem + 1.5vw, 4rem);
 }
 
 body,
@@ -66,10 +70,10 @@ a {
   flex-direction: column;
   gap: 16px;
 
-  font-size: var(--fs-body-mid);
+  font-size: var(--fs-body-md);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 720px) {
   .form-wrap {
     width: 90%;
     margin: 30% auto;
@@ -86,10 +90,17 @@ a {
 
 .input-wrap {
   border: none;
-  display: flex;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  gap: 12px;
   justify-content: space-between;
   user-select: none;
+}
+
+@media (max-width: 720px) {
+  .input-wrap {
+    grid-template-columns: 3fr 1fr;
+  }
 }
 
 .input-border {
@@ -100,11 +111,11 @@ a {
 
 .input {
   width: calc(100% - 20px);
-  height: calc(var(--fs-body-mid) + 25px);
+  height: calc(var(--fs-body-md) + 25px);
   background-color: transparent;
   height: var(--input-height);
 
-  font-size: var(--fs-body-mid);
+  font-size: var(--fs-body-md);
 
   padding: 0 10px;
   border: none;
@@ -122,11 +133,12 @@ a:focus {
 }
 
 .controls-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 2.5fr 2.5fr 1fr;
   gap: 12px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 720px) {
   .controls-container {
     display: flex;
     flex-direction: column;
@@ -151,11 +163,17 @@ a:focus {
   width: 100%;
   height: var(--input-height);
 
-  font-size: var(--fs-body-small);
+  font-size: var(--fs-body-sm);
 
   border: none;
   color: var(--element-2);
   background-color: var(--element-bg-2);
+}
+
+@media (max-width: 720px) {
+  .select-menu {
+    height: var(--input-option-height);
+  }
 }
 
 .button {
@@ -164,13 +182,20 @@ a:focus {
   justify-content: center;
   padding: 0 25px;
   cursor: pointer;
+  width: 100%;
 
-  font-size: var(--fs-body-small);
+  font-size: var(--fs-body-sm);
 
   background-color: var(--element-bg-2);
   color: var(--element-2);
   border: 1px solid var(--element-border-2);
   height: var(--input-height);
+}
+
+@media (max-width: 720px) {
+  .button {
+    font-size: var(--fs-body-sm);
+  }
 }
 
 .button:hover {
@@ -179,6 +204,16 @@ a:focus {
 
 .button:active {
   background-color: #5e5e5e0e;
+}
+
+.input-option {
+  height: var(--input-height);
+}
+
+@media (max-width: 720px) {
+  .input-option {
+    height: var(--input-option-height);
+  }
 }
 
 .spinner-container {
@@ -208,21 +243,24 @@ a:focus {
 
 .footer {
   display: grid;
-  grid-template-columns: 0.5fr 0.55fr 0.5fr 3fr 0.5fr;
+  grid-template-columns: 1fr 1fr 1fr 5fr 1fr;
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 12px 4% 14px;
+  padding: 12px 32px 14px;
   user-select: none;
 
-  font-size: var(--fs-nav);
+  font-size: calc(var(--fs-body-sm) - 0.2rem);
   background-color: var(--bg-2);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 720px) {
   .footer {
-    grid-template-columns: 0.5fr 0.55fr 0.5fr 1fr 0.5fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 12px 24px 14px;
+
+    font-size: var(--fs-body-sm);
   }
 }
 

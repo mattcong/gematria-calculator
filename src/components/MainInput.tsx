@@ -77,7 +77,7 @@ const MainInput = ({
           </button>
         </div>
         <div className="controls-container">
-          <div className="select-wrap">
+          <div className="select-wrap input-option">
             <label htmlFor="cipher">in</label>
             <div className="select-menu-border">
               <select className="select-menu" value={cipher} onChange={handleCipherSelect}>
@@ -95,7 +95,11 @@ const MainInput = ({
               <>
                 <label htmlFor="cipher">using</label>
                 <div className="select-menu-border">
-                  <select className="select-menu" value={text} onChange={handleTextSelect}>
+                  <select
+                    className="select-menu input-option"
+                    value={text}
+                    onChange={handleTextSelect}
+                  >
                     <option value="default">No Text</option>
                     <option value="kjv">Holy Bible (KJV)</option>
                     <option value="apocrypha">Apocrypha</option>
@@ -103,12 +107,7 @@ const MainInput = ({
                 </div>
               </>
             ) : (
-              <button
-                className="button"
-                style={{ width: "100%" }}
-                type="button"
-                onClick={showTextDropdown}
-              >
+              <button className="button input-option" type="button" onClick={showTextDropdown}>
                 Choose Text
               </button>
             )}
