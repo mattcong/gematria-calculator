@@ -1,22 +1,32 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import MainInput from "../components/MainInput"
 import DisplayWords from "../components/DisplayWords"
 import Footer from "../components/BottomNav"
 import { WordListMap } from "../../types/WordListMap"
 import { CalculationResult } from "../../types/CalculationResult"
 import { displayWords } from "@/lib/sortwords"
+import { SearchOptions } from "../../types/SearchOptions"
 
 export default function Home() {
   const [calculationResult, setCalculationResult] = useState<CalculationResult | null>(null)
   const [calculatedWordLists, setCalculatedWordLists] = useState<WordListMap>({})
+  const [searchOptions, setSearchOptions] = useState<SearchOptions>({
+    cipher: "Standard Gematria",
+    text: undefined,
+  })
+
+  const { cipher, text } = searchOptions
+
+  useEffect(() => {
+    setCalculatedWordLists({})
+    handleCalculateAlphabet(cipher, text || "")
+  }, [text])
 
   const handleCalculateAlphabet = async (cipher: string, text: string) => {
     try {
-      const response = await fetch(
-        `/api/calculate-alphabet?cipher=${cipher}&text=${text}`
-      )
+      const response = await fetch(`/api/calculate-alphabet?cipher=${cipher}&text=${text}`)
       const data = await response.json()
       if (response.ok) {
         setCalculatedWordLists((prevMaps: WordListMap) => ({
@@ -64,11 +74,12 @@ export default function Home() {
       <div className="container">
         {!calculationResult ? (
           <MainInput
+            searchOptions={searchOptions}
+            setSearchOptions={setSearchOptions}
             handleCalculate={handleCalculateWord}
             calculatedWordLists={calculatedWordLists}
             handleCalculateAlphabet={handleCalculateAlphabet}
             setCalculationResult={setCalculationResult}
-            setCalculatedAlphabets={setCalculatedWordLists}
           />
         ) : (
           <DisplayWords
