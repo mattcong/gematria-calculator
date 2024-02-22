@@ -4,18 +4,17 @@
 }
 
 :root {
-  --bg-1: white;
-  --element-1-border: #ffffff41;
-  --element-bg-1: #ffffff14;
-  --element-bg-1-hover: #ffffff09;
+  --bg-light: white;
+  --element-light: #cc2f2f;
+  --element-border-light: #adadad;
+  --element-bg-light: #fcfcfc;
+  --element-bg-hover-light: #a1a1a10e;
 
-  --bg-2: #262626;
-  /* --element-2: #16abb5; */
-  /* --element-2: #cc2f2f; */
-  --element-2: #3ea13b;
-  --element-border-2: #81818190;
-  --element-bg-2: #00000018;
-  --element-bg-2-hover: #a1a1a10e;
+  --bg-dark: #262626;
+  --element-dark: #3ea13b;
+  --element-border-dark: #81818190;
+  --element-bg-dark: #00000018;
+  --element-bg-hover-dark: #a1a1a10e;
 
   --input-height: 50px;
   --input-option-height: calc(var(--input-height) - 5px);
@@ -25,23 +24,64 @@
   --fs-body-large: 2.6rem;
 }
 
+.dark-theme {
+  --bg: var(--bg-dark);
+  --element: var(--element-dark);
+  --element-border: var(--element-border-dark);
+  --element-bg: var(--element-bg-dark);
+  --element-bg-hover: var(--element-bg-hover-dark);
+}
+
+.light-theme {
+  --bg: var(--bg-light);
+  --element: var(--element-light);
+  --element-border: var(--element-border-light);
+  --element-bg: var(--element-bg-light);
+  --element-bg-hover: var(--element-bg-hover-light);
+}
+
+body.light-theme {
+  background-color: var(--bg-light);
+}
+
+body.dark-theme {
+  background-color: var(--bg-dark);
+}
+
+body,
+select,
+input,
+button,
+.theme-icon {
+  color: var(--element);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: var(--bg-dark);
+    --element: var(--element-dark);
+    --element-border: var(--element-border-dark);
+    --element-bg: var(--element-bg-dark);
+    --element-bg-hover: var(--element-bg-hover-dark);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: var(--bg-light);
+    --element: var(--element-light);
+    --element-border: var(--element-border-light);
+    --element-bg: var(--element-bg-light);
+    --element-bg-hover: var(--element-bg-hover-light);
+  }
+}
+
 @media (max-width: 720px) {
   :root {
     --fs-body-sm: 1.1rem;
     --fs-body-md: 1.6rem;
     --fs-body-large: 2.2rem;
   }
-}
-
-body {
-  background-color: var(--bg-2);
-}
-
-body,
-select,
-input,
-button {
-  color: var(--element-2);
 }
 
 body,
@@ -105,8 +145,8 @@ a {
 
 .input-border {
   width: 100%;
-  border: 1px solid var(--element-border-2);
-  background-color: var(--element-bg-2);
+  border: 1px solid var(--element-border);
+  background-color: var(--element-bg);
 }
 
 .input {
@@ -122,14 +162,14 @@ a {
 }
 
 .input:active {
-  background-color: var(--element-bg-2);
+  background-color: var(--element-bg);
 }
 
 .input:focus,
 select:focus,
 button:focus,
 a:focus {
-  outline: 1px solid var(--element-2);
+  outline: 1px solid var(--element);
 }
 
 .controls-container {
@@ -153,7 +193,7 @@ a:focus {
 }
 
 .select-menu-border {
-  border: 1px solid var(--element-border-2);
+  border: 1px solid var(--element-border);
   width: 100%;
 }
 
@@ -166,8 +206,8 @@ a:focus {
   font-size: var(--fs-body-sm);
 
   border: none;
-  color: var(--element-2);
-  background-color: var(--element-bg-2);
+  color: var(--element);
+  background-color: var(--element-bg);
 }
 
 @media (max-width: 720px) {
@@ -186,9 +226,9 @@ a:focus {
 
   font-size: var(--fs-body-sm);
 
-  background-color: var(--element-bg-2);
-  color: var(--element-2);
-  border: 1px solid var(--element-border-2);
+  background-color: var(--element-bg);
+  color: var(--element);
+  border: 1px solid var(--element-border);
   height: var(--input-height);
 }
 
@@ -199,7 +239,7 @@ a:focus {
 }
 
 .button:hover {
-  background-color: var(--element-bg-2-hover);
+  background-color: var(--element-bg-hover);
 }
 
 .button:active {
@@ -237,7 +277,7 @@ a:focus {
 
 .path {
   animation: dash 1.5s ease-in-out infinite;
-  stroke: var(--element-2);
+  stroke: var(--element);
   stroke-linecap: round;
 }
 
@@ -252,12 +292,12 @@ a:focus {
   user-select: none;
 
   font-size: calc(var(--fs-body-sm) - 0.2rem);
-  background-color: var(--bg-2);
+  background-color: var(--bg);
 }
 
 @media (max-width: 720px) {
   .footer {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 0.1fr 1fr;
     padding: 12px 24px 14px;
 
     font-size: var(--fs-body-sm);

@@ -38,7 +38,7 @@ This means any number of custom ciphers can be made using these patterns (even t
 ## To do 🔜
 
 - ~Link to all shared words on result page~
-- Light / dark theme toggle
+- ~Light / dark theme toggle~
 - Complete information pages
 - Search history
 - Hebrew language support
