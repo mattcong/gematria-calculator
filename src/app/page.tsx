@@ -16,6 +16,7 @@ export default function Home() {
     cipher: "Standard Gematria",
     text: undefined,
   })
+  const [theme, setTheme] = useState("light")
 
   const { cipher, text } = searchOptions
 
@@ -69,9 +70,22 @@ export default function Home() {
     }
   }
 
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme") || "light"
+    document.body.className = `${storedTheme}-theme`
+    setTheme(storedTheme)
+  }, [])
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light"
+    document.body.className = `${newTheme}-theme`
+    setTheme(newTheme)
+    localStorage.setItem("theme", newTheme)
+  }
+
   return (
     <>
-      <div className="container">
+      <div className={`${theme}-theme container`}>
         {!calculationResult ? (
           <MainInput
             searchOptions={searchOptions}
@@ -88,7 +102,7 @@ export default function Home() {
           />
         )}
       </div>
-      <Footer />
+      <Footer theme={theme} toggleTheme={toggleTheme} />
     </>
   )
 }
