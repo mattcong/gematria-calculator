@@ -1,15 +1,13 @@
+import Link from "next/link"
+
 const Footer = ({ toggleTheme, theme }: { toggleTheme: () => void; theme: string }) => {
-  console.log(theme)
   return (
     <div className="footer">
       <div>
-        <a href="">About</a>
+        <Link href="/information/about">About</Link>
       </div>
       <div>
-        <a href="">Ciphers</a>
-      </div>
-      <div>
-        <a href="">Privacy</a>
+        <Link href="/information/ciphers">Ciphers</Link>
       </div>
       <div />
       <button onClick={toggleTheme} style={{ all: "unset", cursor: "pointer", textAlign: "right" }}>
@@ -25,7 +23,7 @@ const LightIcon = () => (
       d="M10 0C12.6522 0 15.1957 1.05357 17.0711 2.92893C18.9464 4.8043 20 7.34783 20 10C20 12.6522 18.9464 15.1957 17.0711 17.0711C15.1957 18.9464 12.6522 20 10 20L10 10L10 0Z"
       fill="#EB0909"
     />
-    <circle cx="10" cy="10" r="9" transform="rotate(-90 10 10)" stroke="#EB0909" stroke-width="2" />
+    <circle cx="10" cy="10" r="9" transform="rotate(-90 10 10)" stroke="#EB0909" strokeWidth="2" />
   </svg>
 )
 
@@ -35,7 +33,7 @@ const DarkIcon = () => (
       d="M10 0C7.34784 0 4.8043 1.05357 2.92893 2.92893C1.05357 4.8043 2.00233e-07 7.34783 0 10C-2.00233e-07 12.6522 1.05357 15.1957 2.92893 17.0711C4.80429 18.9464 7.34783 20 10 20L10 10L10 0Z"
       fill="#3EA13B"
     />
-    <circle cx="10" cy="10" r="9" transform="rotate(-90 10 10)" stroke="#3EA13B" stroke-width="2" />
+    <circle cx="10" cy="10" r="9" transform="rotate(-90 10 10)" stroke="#3EA13B" strokeWidth="2" />
   </svg>
 )
 
