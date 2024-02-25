@@ -1,4 +1,4 @@
-import { Alphabet } from "../../../../types/Alphabet"
+import { Alphabet } from "../../../types/Alphabet"
 
 import { ciphers } from "../../../lib/ciphers"
 import { calculate } from "../../../lib/calculate"

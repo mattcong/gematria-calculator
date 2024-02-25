@@ -1,6 +1,24 @@
-import Link from "next/link"
+"use client"
 
-const Footer = ({ toggleTheme, theme }: { toggleTheme: () => void; theme: string }) => {
+import Link from "next/link"
+import { useEffect, useState } from "react"
+
+const Footer = () => {
+  const [theme, setTheme] = useState("light")
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme") || "light"
+    document.body.className = `${storedTheme}-theme`
+    setTheme(storedTheme)
+  }, [])
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light"
+    document.body.className = `${newTheme}-theme`
+    setTheme(newTheme)
+    localStorage.setItem("theme", newTheme)
+  }
+
   return (
     <div className="footer">
       <div>

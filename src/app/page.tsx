@@ -3,11 +3,10 @@
 import { useState, useEffect } from "react"
 import MainInput from "../components/MainInput"
 import DisplayWords from "../components/DisplayWords"
-import Footer from "../components/BottomNav"
-import { WordListMap } from "../../types/WordListMap"
-import { CalculationResult } from "../../types/CalculationResult"
+import { WordListMap } from "../types/WordListMap"
+import { CalculationResult } from "../types/CalculationResult"
 import { displayWords } from "@/lib/sortwords"
-import { SearchOptions } from "../../types/SearchOptions"
+import { SearchOptions } from "../types/SearchOptions"
 
 export default function Home() {
   const [calculationResult, setCalculationResult] = useState<CalculationResult | null>(null)
@@ -16,8 +15,7 @@ export default function Home() {
     cipher: "Standard Gematria",
     text: undefined,
   })
-  const [theme, setTheme] = useState("light")
-
+  
   const { cipher, text } = searchOptions
 
   useEffect(() => {
@@ -70,39 +68,23 @@ export default function Home() {
     }
   }
 
-  useEffect(() => {
-    const storedTheme = localStorage.getItem("theme") || "light"
-    document.body.className = `${storedTheme}-theme`
-    setTheme(storedTheme)
-  }, [])
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light"
-    document.body.className = `${newTheme}-theme`
-    setTheme(newTheme)
-    localStorage.setItem("theme", newTheme)
-  }
-
   return (
     <>
-      <div className={`${theme}-theme container`}>
-        {!calculationResult ? (
-          <MainInput
-            searchOptions={searchOptions}
-            setSearchOptions={setSearchOptions}
-            handleCalculate={handleCalculateWord}
-            calculatedWordLists={calculatedWordLists}
-            handleCalculateAlphabet={handleCalculateAlphabet}
-            setCalculationResult={setCalculationResult}
-          />
-        ) : (
-          <DisplayWords
-            calculationResult={calculationResult}
-            setCalculationResult={setCalculationResult}
-          />
-        )}
-      </div>
-      <Footer theme={theme} toggleTheme={toggleTheme} />
+      {!calculationResult ? (
+        <MainInput
+          searchOptions={searchOptions}
+          setSearchOptions={setSearchOptions}
+          handleCalculate={handleCalculateWord}
+          calculatedWordLists={calculatedWordLists}
+          handleCalculateAlphabet={handleCalculateAlphabet}
+          setCalculationResult={setCalculationResult}
+        />
+      ) : (
+        <DisplayWords
+          calculationResult={calculationResult}
+          setCalculationResult={setCalculationResult}
+        />
+      )}
     </>
   )
 }

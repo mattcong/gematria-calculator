@@ -1,4 +1,4 @@
-import { Alphabet } from "../../types/Alphabet"
+import { Alphabet } from "../types/Alphabet"
 
 export class SimpleAlphabet {
   alphabet: Alphabet

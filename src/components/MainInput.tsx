@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import LoadingSpinner from "./LoadingSpinner"
-import { CalculationResult } from "../../types/CalculationResult"
-import { WordListMap } from "../../types/WordListMap"
-import { SearchOptions } from "../../types/SearchOptions"
+import { CalculationResult } from "../types/CalculationResult"
+import { WordListMap } from "../types/WordListMap"
+import { SearchOptions } from "../types/SearchOptions"
 
 const MainInput = ({
   searchOptions,
@@ -79,34 +79,11 @@ const MainInput = ({
         </div>
         <div className="controls-container">
           <div className="select-wrap input-option">
-            <label htmlFor="cipher">in</label>
-            <div className="select-menu-border">
-              <select className="select-menu" value={cipher} onChange={handleCipherSelect}>
-                <option value="Standard Gematria">Standard Gematria</option>
-                <option value="Reverse Standard Gematria">Reverse Standard</option>
-                <option value="Pythagorean Gematria">Pythagorean Gematria</option>
-                <option value="Reverse Pythagorean Gematria">Reverse Pythagorean</option>
-                <option value="Simple Gematria">Simple Gematria</option>
-                <option value="Multiple 6 Gematria">Multiple 6 Gematria</option>
-              </select>
-            </div>
+            <CipherSelect value={cipher} onChange={handleCipherSelect} />
           </div>
-          <div className="select-wrap">
+          <div className="select-wrap input-option">
             {showTexts ? (
-              <>
-                <label htmlFor="cipher">using</label>
-                <div className="select-menu-border">
-                  <select
-                    className="select-menu input-option"
-                    value={text}
-                    onChange={handleTextSelect}
-                  >
-                    <option value="default">No Text</option>
-                    <option value="kjv">Holy Bible (KJV)</option>
-                    <option value="apocrypha">Apocrypha</option>
-                  </select>
-                </div>
-              </>
+              <TextSelect value={text} onChange={handleTextSelect} />
             ) : (
               <button className="button input-option" type="button" onClick={showTextDropdown}>
                 Choose Text
@@ -116,6 +93,51 @@ const MainInput = ({
         </div>
       </div>
     </form>
+  )
+}
+
+const CipherSelect = ({
+  value,
+  onChange,
+}: {
+  value: string | undefined
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
+}) => {
+  return (
+    <>
+      <label htmlFor="cipher">in</label>
+      <div className="select-menu-border">
+        <select className="select-menu" value={value} onChange={onChange}>
+          <option value="Standard Gematria">Standard Gematria</option>
+          <option value="Reverse Standard Gematria">Reverse Standard</option>
+          <option value="Pythagorean Gematria">Pythagorean Gematria</option>
+          <option value="Reverse Pythagorean Gematria">Reverse Pythagorean</option>
+          <option value="Simple Gematria">Simple Gematria</option>
+          <option value="Multiple 6 Gematria">Multiple 6 Gematria</option>
+        </select>
+      </div>
+    </>
+  )
+}
+
+const TextSelect = ({
+  value,
+  onChange,
+}: {
+  value: string | undefined
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
+}) => {
+  return (
+    <>
+      <label htmlFor="cipher">using</label>
+      <div className="select-menu-border">
+        <select className="select-menu input-option" value={value} onChange={onChange}>
+          <option value="default">No Text</option>
+          <option value="kjv">Holy Bible (KJV)</option>
+          <option value="apocrypha">Apocrypha</option>
+        </select>
+      </div>
+    </>
   )
 }
 
