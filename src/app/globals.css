@@ -295,6 +295,22 @@ a:focus {
   background-color: var(--bg);
 }
 
+.information-container {
+  padding: 30px 20px 0;
+}
+
+@media (max-width: 720px) {
+  .information-container {
+    padding: 10px 0 0 0;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.svg {
+  fill: var(--element);
+}
+
 @media (max-width: 720px) {
   .footer {
     grid-template-columns: 1fr 1fr 0.1fr 1fr;
