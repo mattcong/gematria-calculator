@@ -1,4 +1,4 @@
-import { CalculationResult } from "../../types/CalculationResult"
+import { CalculationResult } from "../types/CalculationResult"
 import FormattedWords from "./FormattedWords"
 import Link from "next/link"
 

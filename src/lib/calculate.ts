@@ -1,4 +1,4 @@
-import { Alphabet } from "../../types/Alphabet"
+import { Alphabet } from "../types/Alphabet"
 
 export function calculate(word: string, alphabet: Alphabet): number {
   let result: number[] = []
