@@ -1,3 +1,4 @@
+import { Philosophorum } from "@/components/svg/Philosophorum"
 import Link from "next/link"
 
 const Page = () => {
@@ -6,6 +7,9 @@ const Page = () => {
       <Link href="/" className="button">
         Back
       </Link>
+      <div className="information-container">
+        <Philosophorum />
+      </div>
     </div>
   )
 }

@@ -11,7 +11,7 @@ const DisplayWords = ({ calculationResult, setCalculationResult }: DisplayWordsP
   const { word, cipher, value, sharedWords } = calculationResult
 
   return (
-    <>
+    <div className="container">
       <Link href="/" className="button" onClick={() => setCalculationResult(null)}>
         Back
       </Link>
@@ -27,7 +27,7 @@ const DisplayWords = ({ calculationResult, setCalculationResult }: DisplayWordsP
           <p>No single word shares this value.</p>
         )}
       </div>
-    </>
+    </div>
   )
 }
 
