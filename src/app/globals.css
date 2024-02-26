@@ -281,6 +281,11 @@ a:focus {
   stroke-linecap: round;
 }
 
+.app-bar {
+  display: grid;
+  grid-template-columns: 1fr 8fr;
+}
+
 .footer {
   display: grid;
   grid-template-columns: 1fr 1fr 5fr 1fr;
@@ -296,18 +301,40 @@ a:focus {
 }
 
 .information-container {
-  padding: 30px 20px 0;
+  display: flex;
+  gap: 60px;
+  padding: 30px 40px 100px;
+  max-width: 1700px;
+  margin: 0 auto;
 }
 
 @media (max-width: 720px) {
   .information-container {
-    padding: 10px 0 0 0;
+    padding: 0 0 100px;
+    gap: 10px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
+.information-wrap {
+  font-size: 1.3rem;
+}
+
 .svg {
+  min-width: 280px;
+}
+
+@media (max-width: 720px) {
+  .svg {
+    height: 400px;
+    width: 220px;
+    min-width: 0px;
+  }
+}
+
+.image-path {
   fill: var(--element);
 }
 
