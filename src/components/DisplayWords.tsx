@@ -1,6 +1,7 @@
 import { CalculationResult } from "../types/CalculationResult"
 import FormattedWords from "./FormattedWords"
 import Link from "next/link"
+import AppBar from "./AppBar"
 
 type DisplayWordsProps = {
   calculationResult: CalculationResult
@@ -12,9 +13,11 @@ const DisplayWords = ({ calculationResult, setCalculationResult }: DisplayWordsP
 
   return (
     <div className="container">
-      <Link href="/" className="button" onClick={() => setCalculationResult(null)}>
-        Back
-      </Link>
+      <AppBar>
+        <Link href="/" className="button" onClick={() => setCalculationResult(null)}>
+          Back
+        </Link>
+      </AppBar>
       <div className="result-wrap">
         <p>
           The {cipher} value of {word} is {value}.
