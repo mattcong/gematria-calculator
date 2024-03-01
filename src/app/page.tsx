@@ -13,7 +13,7 @@ export default function Home() {
   const [calculatedWordLists, setCalculatedWordLists] = useState<WordListMap>({})
   const [searchOptions, setSearchOptions] = useState<SearchOptions>({
     cipher: "Standard Gematria",
-    text: undefined,
+    text: "apocrypha",
   })
   
   const { cipher, text } = searchOptions

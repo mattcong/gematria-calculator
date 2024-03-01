@@ -24,8 +24,8 @@ export async function GET(req: NextRequest, res: NextResponse) {
     const localKjv = path.join(process.cwd(), "files", "bible-kjv.txt")
     const prodKjv = "/var/task/files/bible-kjv.txt"
 
-    const localApocrypha = path.join(process.cwd(), "files", "british-english.txt")
-    const prodApocrypha = "/var/task/files/british-english.txt"
+    const localApocrypha = path.join(process.cwd(), "files", "apocrypha.txt")
+    const prodApocrypha = "/var/task/files/apocrypha.txt"
 
     const localDefault = path.join(process.cwd(), "files", "british-english.txt")
     const prodDefault = "/var/task/files/british-english.txt"
