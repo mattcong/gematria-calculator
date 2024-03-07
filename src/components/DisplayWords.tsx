@@ -3,12 +3,24 @@ import FormattedWords from "./FormattedWords"
 import Link from "next/link"
 import AppBar from "./AppBar"
 
+const getTextName = (text: string) => {
+  switch (text) {
+    case "kjv":
+      return <span>The King James Bible</span>
+    case "apocrypha":
+      return <span>The Biblical Apocrypha</span>
+    default:
+      return text
+  }
+}
+
 type DisplayWordsProps = {
+  text: string | undefined
   calculationResult: CalculationResult
   setCalculationResult: (data: null) => void
 }
 
-const DisplayWords = ({ calculationResult, setCalculationResult }: DisplayWordsProps) => {
+const DisplayWords = ({ text, calculationResult, setCalculationResult }: DisplayWordsProps) => {
   const { word, cipher, value, sharedWords } = calculationResult
 
   return (
@@ -24,7 +36,15 @@ const DisplayWords = ({ calculationResult, setCalculationResult }: DisplayWordsP
         </p>
         {sharedWords.length ? (
           <p>
-            This is shared by: <FormattedWords words={sharedWords} />
+            {text && text !== "default" ? (
+              <span>
+                Among words from {getTextName(text)}, this is shared by:
+                <br />
+              </span>
+            ) : (
+              <span>This is shared by:</span>
+            )}{" "}
+            <FormattedWords words={sharedWords} />
           </p>
         ) : (
           <p>No single word shares this value.</p>

@@ -39,9 +39,9 @@ const LightIcon = () => (
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M10 0C12.6522 0 15.1957 1.05357 17.0711 2.92893C18.9464 4.8043 20 7.34783 20 10C20 12.6522 18.9464 15.1957 17.0711 17.0711C15.1957 18.9464 12.6522 20 10 20L10 10L10 0Z"
-      fill="#EB0909"
+      fill="#cc2f2f"
     />
-    <circle cx="10" cy="10" r="9" transform="rotate(-90 10 10)" stroke="#EB0909" strokeWidth="2" />
+    <circle cx="10" cy="10" r="9" transform="rotate(-90 10 10)" stroke="#cc2f2f" strokeWidth="2" />
   </svg>
 )
 
