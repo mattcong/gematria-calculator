@@ -15,7 +15,7 @@ export default function Home() {
     cipher: "Standard Gematria",
     text: "apocrypha",
   })
-  
+
   const { cipher, text } = searchOptions
 
   useEffect(() => {
@@ -81,6 +81,7 @@ export default function Home() {
         />
       ) : (
         <DisplayWords
+          text={text}
           calculationResult={calculationResult}
           setCalculationResult={setCalculationResult}
         />

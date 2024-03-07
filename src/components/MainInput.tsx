@@ -4,6 +4,15 @@ import { CalculationResult } from "../types/CalculationResult"
 import { WordListMap } from "../types/WordListMap"
 import { SearchOptions } from "../types/SearchOptions"
 
+type MainInputProps = {
+  searchOptions: SearchOptions
+  setSearchOptions: (options: SearchOptions) => void
+  handleCalculateAlphabet: (cipher: string, text: string) => Promise<CalculationResult>
+  handleCalculate: (word: string, cipher: string, text: string) => Promise<CalculationResult>
+  setCalculationResult: (data: CalculationResult) => void
+  calculatedWordLists: WordListMap
+}
+
 const MainInput = ({
   searchOptions,
   setSearchOptions,
@@ -15,14 +24,13 @@ const MainInput = ({
   const { cipher, text } = searchOptions
 
   const [loading, setLoading] = useState(false)
-  const [alphabetLoading, setAlphabetLoading] = useState(false)
   const [word, setWord] = useState("")
   const [showTexts, setShowTexts] = useState(text && true)
 
   const getAlphabet = async () => {
-    setAlphabetLoading(true)
+    setLoading(true)
     await handleCalculateAlphabet(cipher, text || "")
-    setAlphabetLoading(false)
+    setLoading(false)
   }
 
   const calculate = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -49,8 +57,6 @@ const MainInput = ({
 
   const showTextDropdown = () => setShowTexts(true)
 
-  const isLoading = loading || alphabetLoading
-
   useEffect(() => {
     if (Object.keys(calculatedWordLists).includes(cipher)) {
       return
@@ -70,11 +76,11 @@ const MainInput = ({
               value={word}
               onChange={handleInputChange}
               required
-              disabled={isLoading}
+              disabled={loading}
             />
           </div>
-          <button className="button" type="submit" disabled={isLoading}>
-            {isLoading ? <LoadingSpinner /> : "Go"}
+          <button className="button" type="submit" disabled={loading}>
+            {loading ? <LoadingSpinner /> : "Go"}
           </button>
         </div>
         <div className="controls-container">
@@ -139,15 +145,6 @@ const TextSelect = ({
       </div>
     </>
   )
-}
-
-type MainInputProps = {
-  searchOptions: SearchOptions
-  setSearchOptions: (options: SearchOptions) => void
-  handleCalculateAlphabet: (cipher: string, text: string) => Promise<CalculationResult>
-  handleCalculate: (word: string, cipher: string, text: string) => Promise<CalculationResult>
-  setCalculationResult: (data: CalculationResult) => void
-  calculatedWordLists: WordListMap
 }
 
 export default MainInput
