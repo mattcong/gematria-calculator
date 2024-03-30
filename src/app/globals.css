@@ -326,6 +326,8 @@ a:focus {
   display: grid;
   grid-template-columns: repeat(26, 1fr);
   border: 1px solid;
+  font-size: 0.8rem;
+  min-width: fit-content;
 }
 
 @media (max-width: 720px) {
@@ -350,6 +352,7 @@ a:focus {
 @media (max-width: 720px) {
   .cipher-display-tile {
     padding: 4px 2px;
+    min-width: 20px;
   }
 }
 
