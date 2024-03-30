@@ -322,6 +322,37 @@ a:focus {
   font-size: 1.3rem;
 }
 
+.cipher-display-wrap {
+  display: grid;
+  grid-template-columns: repeat(26, 1fr);
+  border: 1px solid;
+}
+
+@media (max-width: 720px) {
+  .cipher-display-wrap {
+    grid-template-columns: repeat(13, 1fr);
+    font-size: 0.7rem;
+  }
+}
+
+.cipher-display-tile-wrap {
+  text-align: center;
+  min-width: 20px;
+  min-width: fit-content;
+}
+
+.cipher-display-tile {
+  padding: 4px;
+  border: 1px solid;
+  min-width: fit-content;
+}
+
+@media (max-width: 720px) {
+  .cipher-display-tile {
+    padding: 4px 2px;
+  }
+}
+
 .svg {
   min-width: 280px;
 }
