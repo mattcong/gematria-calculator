@@ -4,16 +4,16 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 
 const Footer = () => {
-  const [theme, setTheme] = useState("light")
+  const [theme, setTheme] = useState("dark")
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem("theme") || "light"
+    const storedTheme = localStorage.getItem("theme") || "dark"
     document.body.className = `${storedTheme}-theme`
     setTheme(storedTheme)
   }, [])
 
   const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light"
+    const newTheme = theme === "dark" ? "light" : "dark"
     document.body.className = `${newTheme}-theme`
     setTheme(newTheme)
     localStorage.setItem("theme", newTheme)
