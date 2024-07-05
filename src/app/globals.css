@@ -56,26 +56,6 @@ button,
   color: var(--element);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: var(--bg-dark);
-    --element: var(--element-dark);
-    --element-border: var(--element-border-dark);
-    --element-bg: var(--element-bg-dark);
-    --element-bg-hover: var(--element-bg-hover-dark);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg: var(--bg-light);
-    --element: var(--element-light);
-    --element-border: var(--element-border-light);
-    --element-bg: var(--element-bg-light);
-    --element-bg-hover: var(--element-bg-hover-light);
-  }
-}
-
 @media (max-width: 720px) {
   :root {
     --fs-body-sm: 1.1rem;
