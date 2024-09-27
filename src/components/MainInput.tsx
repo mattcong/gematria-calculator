@@ -3,11 +3,14 @@ import LoadingSpinner from "./LoadingSpinner"
 import { SearchOptions } from "../types/SearchOptions"
 import { ciphers } from "@/lib/ciphers"
 
+type wordCalculate = (value: string, cipher: string, text: string) => Promise<void>
+type numberCalculate = (value: string, cipher: string, text: string) => void
+
 type MainInputProps = {
   loading: boolean
   searchOptions: SearchOptions
   setSearchOptions: (options: SearchOptions) => void
-  handleCalculate: (word: string, cipher: string, text: string) => Promise<void>
+  handleCalculate: wordCalculate | numberCalculate
 }
 
 const MainInput = ({

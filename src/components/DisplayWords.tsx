@@ -12,11 +12,39 @@ const getTextName = (text: string) => {
   }
 }
 
-type DisplayWordsProps = {
+export const DisplayNumberResults = ({
+  calculationResult,
+}: {
   calculationResult: CalculationResult
+}) => {
+  const { value, sharedWords, text } = calculationResult
+
+  return (
+    <div className="result-wrap">
+      {sharedWords.length ? (
+        <p>
+          {text && text !== "default" ? (
+            <span>
+              Among words from {getTextName(text)}, the value {value} is shared by:
+              <br />
+            </span>
+          ) : (
+            <span>The value {value} is shared by:</span>
+          )}{" "}
+          <FormattedWords words={sharedWords} />
+        </p>
+      ) : (
+        <p>No single word shares this value.</p>
+      )}
+    </div>
+  )
 }
 
-const DisplayWords = ({ calculationResult }: DisplayWordsProps) => {
+export const DisplayWordResults = ({
+  calculationResult,
+}: {
+  calculationResult: CalculationResult
+}) => {
   const { word, cipher, value, sharedWords, text } = calculationResult
 
   return (
@@ -24,7 +52,7 @@ const DisplayWords = ({ calculationResult }: DisplayWordsProps) => {
       <p>
         The {cipher} value of {word} is {value}.
       </p>
-      {sharedWords.length ? (
+      {sharedWords.length && sharedWords[0] ? (
         <p>
           {text && text !== "default" ? (
             <span>
@@ -42,5 +70,3 @@ const DisplayWords = ({ calculationResult }: DisplayWordsProps) => {
     </div>
   )
 }
-
-export default DisplayWords

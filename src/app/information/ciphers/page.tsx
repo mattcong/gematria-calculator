@@ -50,10 +50,6 @@ const Page = () => {
           <CipherDisplay letters={letters} cipher={ciphers["Standard Gematria"]} />
         </div>
         <div>
-          <p>Reverse Standard Gematria</p>
-          <CipherDisplay letters={letters} cipher={ciphers["Reverse Standard Gematria"]} />
-        </div>
-        <div>
           <p>Pythagorean Gematria</p>
           <CipherDisplay letters={letters} cipher={ciphers["Pythagorean Gematria"]} />
         </div>

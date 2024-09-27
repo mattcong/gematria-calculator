@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import MainInput from "../components/MainInput"
-import DisplayWords from "../components/DisplayWords"
+import { DisplayWordResults, DisplayNumberResults } from "../components/DisplayWords"
 import { WordListMap } from "../types/WordListMap"
 import { CalculationResult } from "../types/CalculationResult"
 import { removeCalculatedWordAndShuffle } from "@/lib/removeCalculatedWordAndShuffle"
@@ -18,6 +18,7 @@ export default function Home() {
   })
   const [showSearchButton, setShowSearchButton] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [isNumber, setIsNumber] = useState(false)
 
   const handleCalculateAlphabet = async (cipher: string, text: string) => {
     setLoading(true)
@@ -76,6 +77,35 @@ export default function Home() {
     }
   }
 
+  const handleCalculateNumber = (number: string, cipher: string, text: string) => {
+    const shared = calculatedWordLists[`${cipher}`]
+    const words: string[] = shared[Number(number)]
+    const filteredWords = removeCalculatedWordAndShuffle(words, "")
+
+    if (calculatedWordLists[`${cipher}`]) {
+      const result = {
+        cipher: cipher,
+        value: number,
+        sharedWords: filteredWords,
+        text: text,
+      }
+      setCalculationResult(result)
+    }
+  }
+
+  const handleCalculate = (value: string, cipher: string, text: string) => {
+    const isNumber = (value: string) => /^\d+$/.test(value)
+    const formattedNumberInput = value.replaceAll(" ", "")
+    
+    if (isNumber(formattedNumberInput)) {
+      setIsNumber(true)
+      handleCalculateNumber(formattedNumberInput, cipher, text)
+    } else {
+      setIsNumber(false)
+      handleCalculateWord(value, cipher, text)
+    }
+  }
+
   const handleShowSearch = () => {
     window.scrollTo({
       top: 0,
@@ -119,9 +149,14 @@ export default function Home() {
         loading={loading}
         searchOptions={searchOptions}
         setSearchOptions={setSearchOptions}
-        handleCalculate={handleCalculateWord}
+        handleCalculate={handleCalculate}
       />
-      {calculationResult && <DisplayWords calculationResult={calculationResult} />}
+      {calculationResult &&
+        (isNumber ? (
+          <DisplayNumberResults calculationResult={calculationResult} />
+        ) : (
+          <DisplayWordResults calculationResult={calculationResult} />
+        ))}
       {showSearchButton && (
         <button
           style={{
