@@ -88,8 +88,12 @@ const CipherSelect = ({
       <label htmlFor="cipher">in</label>
       <div className="select-menu-border">
         <select className="select-menu" value={value} onChange={onChange}>
-          {Object.keys(ciphers).map((cipherName) => {
-            return <option value={cipherName}>{cipherName}</option>
+          {Object.keys(ciphers).map((cipherName, i) => {
+            return (
+              <option key={i} value={cipherName}>
+                {cipherName}
+              </option>
+            )
           })}
         </select>
       </div>

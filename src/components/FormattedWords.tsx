@@ -24,10 +24,10 @@ const FormattedWords = ({ words }: { words: string[] }) => {
   useEffect(() => {
     setShowAll(false)
   }, [words])
-  
+
   useEffect(() => {
     setFormattedDisplayedWords(formatWordList(displayedWords, hasHiddenWords))
-  }, [showAll, words])
+  }, [showAll, words, displayedWords, hasHiddenWords])
 
   return (
     <>
