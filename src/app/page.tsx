@@ -86,8 +86,18 @@ export default function Home() {
   const { cipher, text } = searchOptions
 
   useEffect(() => {
-    handleCalculateAlphabet(cipher, text || "")
-  }, [cipher, text])
+    if (calculatedWordLists[`${cipher}`]) {
+      return
+    }
+    handleCalculateAlphabet(cipher, text)
+  }, [cipher])
+
+  useEffect(() => {
+    if (Object.keys(calculatedWordLists).length > 0) {
+      setCalculatedWordLists({})
+    }
+    handleCalculateAlphabet(cipher, text)
+  }, [text])
 
   useEffect(() => {
     const handleScroll = () => {

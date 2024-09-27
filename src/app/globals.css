@@ -99,7 +99,7 @@ a {
 
 .form-wrap {
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px 0;
   user-select: none;
   display: flex;
   flex-direction: column;
