@@ -4,11 +4,15 @@ import { Alphabet } from "../types/Alphabet"
 const reverse = true
 const regular = false
 
-export const standardAlphabet: IncrementalAlphabet = new IncrementalAlphabet([1, 10, 100], regular)
-
-export const reverseStandardAlphabet: IncrementalAlphabet = new IncrementalAlphabet(
+const standardAlphabetExceptions = [
+  { exceptionLetter: "J", exceptionValue: 600 },
+  { exceptionLetter: "V", exceptionValue: 700 },
+  { exceptionLetter: "W", exceptionValue: 900 },
+]
+export const standardAlphabet: IncrementalAlphabet = new IncrementalAlphabet(
   [1, 10, 100],
-  reverse
+  regular,
+  standardAlphabetExceptions
 )
 
 export const pythagoreanAlphabet: ModularAlphabet = new ModularAlphabet(9, regular)
@@ -21,7 +25,6 @@ export const multiple6Alphabet: MultipleAlphabet = new MultipleAlphabet(6, regul
 
 export const ciphers: { [key: string]: Alphabet } = {
   "Standard Gematria": standardAlphabet.use(),
-  "Reverse Standard Gematria": reverseStandardAlphabet.use(),
   "Pythagorean Gematria": pythagoreanAlphabet.use(),
   "Reverse Pythagorean Gematria": reversePythagoreanAlphabet.use(),
   "Simple Gematria": simpleAlphabet.use(),

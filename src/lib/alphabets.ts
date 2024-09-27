@@ -52,12 +52,18 @@ export class ModularAlphabet extends SimpleAlphabet {
   }
 }
 
+type Exceptions = {
+  exceptionLetter: string
+  exceptionValue: number
+}[]
 export class IncrementalAlphabet extends SimpleAlphabet {
   incrementBy: number[]
+  exceptions: Exceptions | undefined
 
-  constructor(units: number[], isReverse: boolean) {
+  constructor(units: number[], isReverse: boolean, exceptions?: Exceptions) {
     super(isReverse)
     this.incrementBy = units
+    this.exceptions = exceptions
 
     let numbers: number[] = []
     const step = Math.ceil(26 / units.length)
@@ -67,8 +73,22 @@ export class IncrementalAlphabet extends SimpleAlphabet {
       }
     }
     let i = 0
-    for (const v in this.alphabet) {
-      this.alphabet[v] = numbers[i]
+    for (const letter in this.alphabet) {
+      this.alphabet[letter] = numbers[i]
+
+      const exceptions = this.exceptions
+      if (exceptions && exceptions.length) {
+        exceptions.forEach((exception) => {
+          const { exceptionLetter, exceptionValue } = exception
+          if (letter === exceptionLetter) {
+            this.alphabet[letter] = exceptionValue
+
+            //step back so next letter value follows in sequence from letter before exception
+            //TODO: probably want to add disable flag for this
+            i--
+          }
+        })
+      }
       i++
     }
   }

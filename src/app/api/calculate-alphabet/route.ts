@@ -3,7 +3,6 @@ import {
   standardAlphabet,
   pythagoreanAlphabet,
   reversePythagoreanAlphabet,
-  reverseStandardAlphabet,
   simpleAlphabet,
   multiple6Alphabet,
 } from "../../../lib/ciphers"
@@ -58,8 +57,6 @@ function getCipher(cipher: string) {
   switch (cipher) {
     case "Standard Gematria":
       return standardAlphabet.use()
-    case "Reverse Standard Gematria":
-      return reverseStandardAlphabet.use()
     case "Pythagorean Gematria":
       return pythagoreanAlphabet.use()
     case "Reverse Pythagorean Gematria":

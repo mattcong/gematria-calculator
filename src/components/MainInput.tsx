@@ -1,6 +1,7 @@
 import { useState } from "react"
 import LoadingSpinner from "./LoadingSpinner"
 import { SearchOptions } from "../types/SearchOptions"
+import { ciphers } from "@/lib/ciphers"
 
 type MainInputProps = {
   loading: boolean
@@ -87,12 +88,9 @@ const CipherSelect = ({
       <label htmlFor="cipher">in</label>
       <div className="select-menu-border">
         <select className="select-menu" value={value} onChange={onChange}>
-          <option value="Standard Gematria">Standard Gematria</option>
-          <option value="Reverse Standard Gematria">Reverse Standard</option>
-          <option value="Pythagorean Gematria">Pythagorean Gematria</option>
-          <option value="Reverse Pythagorean Gematria">Reverse Pythagorean</option>
-          <option value="Simple Gematria">Simple Gematria</option>
-          <option value="Multiple 6 Gematria">Multiple 6 Gematria</option>
+          {Object.keys(ciphers).map((cipherName) => {
+            return <option value={cipherName}>{cipherName}</option>
+          })}
         </select>
       </div>
     </>
