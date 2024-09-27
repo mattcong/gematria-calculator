@@ -41,10 +41,7 @@ const Page = () => {
           Back
         </Link>
       </AppBar>
-      <div
-        className="information-container"
-        style={{ flexDirection: "column", justifyContent: "center" }}
-      >
+      <div className="information-container" style={{ flexDirection: "column" }}>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Tree />
         </div>

@@ -1,13 +1,14 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const FormattedWords = ({ words }: { words: string[] }) => {
   const [showAll, setShowAll] = useState(false)
+  const [formattedDisplayedWords, setFormattedDisplayedWords] = useState("false")
 
-  const formatWordList = (words: string[], noHiddenWords: boolean) => {
+  const formatWordList = (words: string[], hiddenWords: boolean) => {
     if (words.length === 1) {
       return `${words}.`
     }
-    if (words.length > 1 && noHiddenWords) {
+    if (words.length > 1 && !hiddenWords) {
       const lastWord = words.pop()
       return `${words.join(", ")} and ${lastWord}.`
     }
@@ -17,12 +18,20 @@ const FormattedWords = ({ words }: { words: string[] }) => {
   const numberOfDisplayWords = 40
   const numberOfHiddenWords = words.length - numberOfDisplayWords
   const hasHiddenWords = words.length > numberOfDisplayWords && !showAll
-  const displayedWords = hasHiddenWords ? words.slice(0, numberOfDisplayWords) : words
-  const formattedWords = formatWordList(displayedWords, !hasHiddenWords)
+  const someWords = hasHiddenWords ? words.slice(0, numberOfDisplayWords) : words
+  const displayedWords = showAll ? words : someWords
+
+  useEffect(() => {
+    setShowAll(false)
+  }, [words])
+  
+  useEffect(() => {
+    setFormattedDisplayedWords(formatWordList(displayedWords, hasHiddenWords))
+  }, [showAll, words])
 
   return (
-    <span>
-      {formattedWords}
+    <>
+      {formattedDisplayedWords}
       {hasHiddenWords && (
         <>
           {" "}
@@ -35,7 +44,7 @@ const FormattedWords = ({ words }: { words: string[] }) => {
           </a>
         </>
       )}
-    </span>
+    </>
   )
 }
 

@@ -3,6 +3,7 @@ export type CalculationResult = {
   cipher: string,
   value: string
   sharedWords: string[]
+  text: string
 }
 
 export type CalculationArgs = { word: string; cipher: string; text: string }

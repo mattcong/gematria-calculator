@@ -1,72 +1,45 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import LoadingSpinner from "./LoadingSpinner"
-import { CalculationResult } from "../types/CalculationResult"
-import { WordListMap } from "../types/WordListMap"
 import { SearchOptions } from "../types/SearchOptions"
 
 type MainInputProps = {
+  loading: boolean
   searchOptions: SearchOptions
   setSearchOptions: (options: SearchOptions) => void
-  handleCalculateAlphabet: (cipher: string, text: string) => Promise<CalculationResult>
-  handleCalculate: (word: string, cipher: string, text: string) => Promise<CalculationResult>
-  setCalculationResult: (data: CalculationResult) => void
-  calculatedWordLists: WordListMap
+  handleCalculate: (word: string, cipher: string, text: string) => Promise<void>
 }
 
 const MainInput = ({
+  loading,
   searchOptions,
   setSearchOptions,
   handleCalculate,
-  handleCalculateAlphabet,
-  setCalculationResult,
-  calculatedWordLists,
 }: MainInputProps) => {
   const { cipher, text } = searchOptions
 
-  const [loading, setLoading] = useState(false)
   const [word, setWord] = useState("")
   const [showTexts, setShowTexts] = useState(text && true)
-
-  const getAlphabet = async () => {
-    setLoading(true)
-    await handleCalculateAlphabet(cipher, text || "")
-    setLoading(false)
-  }
-
-  const calculate = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    setLoading(true)
-    const data = await handleCalculate(word, cipher, text || "")
-    setCalculationResult(data)
-    setLoading(false)
-  }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value)
   }
-  const handleCipherSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSearchOptions({ ...searchOptions, cipher: event.currentTarget.value })
-    if (Object.keys(calculatedWordLists).includes(cipher)) {
-      return
-    }
-    getAlphabet()
+  const handleCipherSelect = async (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedCipher = event.currentTarget.value
+    setSearchOptions({ ...searchOptions, cipher: selectedCipher })
   }
   const handleTextSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSearchOptions({ ...searchOptions, text: event.currentTarget.value })
   }
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    await handleCalculate(word, cipher, text || "")
+  }
 
   const showTextDropdown = () => setShowTexts(true)
 
-  useEffect(() => {
-    if (Object.keys(calculatedWordLists).includes(cipher)) {
-      return
-    }
-    getAlphabet()
-  }, [cipher, text])
-
   return (
-    <form onSubmit={calculate}>
-      <div className="form-wrap">
+    <form onSubmit={handleSubmit}>
+      <div className={`form-wrap`}>
         <label htmlFor="calculation-input">Find the value of:</label>
         <div className="input-wrap">
           <div className="input-border">

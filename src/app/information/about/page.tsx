@@ -11,7 +11,9 @@ const Page = () => {
         </Link>
       </AppBar>
       <div className="information-container">
-        <Philosophorum />
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Philosophorum />
+        </div>
         <div className="information-wrap">
           <p>
             Gematria is a system assigning numerical values to letters. It is both a spiritual
