@@ -5,7 +5,7 @@ import MainInput from "../components/MainInput"
 import DisplayWords from "../components/DisplayWords"
 import { WordListMap } from "../types/WordListMap"
 import { CalculationResult } from "../types/CalculationResult"
-import { removeCalculatedWordAndShuffle } from "@/lib/sortWords"
+import { removeCalculatedWordAndShuffle } from "@/lib/removeCalculatedWordAndShuffle"
 import { SearchOptions } from "../types/SearchOptions"
 import { HandUp } from "@/components/svg/HandUp"
 
