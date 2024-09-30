@@ -38,7 +38,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
     const mormonFile = process.env.NODE_ENV === "development" ? localMormon : prodMormon
     const defaultFile = process.env.NODE_ENV === "development" ? localDefault : prodDefault
 
-    const filePath = text === "kjv" ? kjvFile : text === "apocrypha" ? apocryphaFile : defaultFile
+    const filePath = text === "kjv" ? kjvFile : text === "apocrypha" ? apocryphaFile : text === "mormon" ? mormonFile : defaultFile
 
     const wordList = fs.readFileSync(filePath, "utf-8").toString().split("\n")
     const wordListMap = preCalculateValues(wordList, getCipher(cipher))
