@@ -5,6 +5,7 @@ import {
   reversePythagoreanAlphabet,
   simpleAlphabet,
   multiple6Alphabet,
+  customAlphabet,
 } from "../../../lib/ciphers"
 import { preCalculateValues } from "../../../lib/calculate"
 import fs from "fs"
@@ -65,6 +66,8 @@ function getCipher(cipher: string) {
       return simpleAlphabet.use()
     case "Multiple 6 Gematria":
       return multiple6Alphabet.use()
+    case "Alphanumeric Qabbala":
+      return customAlphabet.use()
     default:
       throw new Error("Unknown cipher")
   }

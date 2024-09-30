@@ -65,6 +65,10 @@ const Page = () => {
           <p>Multiple 6 Gematria</p>
           <CipherDisplay letters={letters} cipher={ciphers["Multiple 6 Gematria"]} />
         </div>
+        <div>
+          <p>Alphanumeric Qabbala</p>
+          <CipherDisplay letters={letters} cipher={ciphers["Alphanumeric Qabbala"]} />
+        </div>
       </div>
     </div>
   )
