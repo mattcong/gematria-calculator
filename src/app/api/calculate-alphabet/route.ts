@@ -27,11 +27,15 @@ export async function GET(req: NextRequest, res: NextResponse) {
     const localApocrypha = path.join(process.cwd(), "files", "apocrypha.txt")
     const prodApocrypha = "/var/task/files/apocrypha.txt"
 
+    const localMormon = path.join(process.cwd(), "files", "mormon.txt")
+    const prodMormon = "/var/task/files/mormon.txt"
+
     const localDefault = path.join(process.cwd(), "files", "british-english.txt")
     const prodDefault = "/var/task/files/british-english.txt"
 
     const kjvFile = process.env.NODE_ENV === "development" ? localKjv : prodKjv
     const apocryphaFile = process.env.NODE_ENV === "development" ? localApocrypha : prodApocrypha
+    const mormonFile = process.env.NODE_ENV === "development" ? localMormon : prodMormon
     const defaultFile = process.env.NODE_ENV === "development" ? localDefault : prodDefault
 
     const filePath = text === "kjv" ? kjvFile : text === "apocrypha" ? apocryphaFile : defaultFile
