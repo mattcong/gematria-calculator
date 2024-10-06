@@ -204,7 +204,6 @@ alarm
 alarming
 Albany
 Albany [New York]
-Albany, New York
 Alcohol
 alert
 alike
@@ -265,7 +264,6 @@ America
 American
 Amgid
 Amherst [Ohio]
-Amherst, Ohio
 amidst
 Aminadab
 Aminadi
@@ -833,7 +831,6 @@ Bosom
 bosoms
 Boston
 Boston [Massachusetts]
-Boston, Massachusetts
 both
 bottom
 bough
@@ -939,7 +936,6 @@ Burial
 buried
 Burlington
 Burlington [Iowa]
-Burlington, Iowa
 burn
 burned
 burneth
@@ -1035,7 +1031,6 @@ cart
 Carter
 Carthage
 Carthage [Illinois]
-Carthage, Illinois
 case
 cases
 Cast
@@ -1178,7 +1173,6 @@ cimeter
 cimeters
 Cincinnati
 Cincinnati [Ohio]
-Cincinnati, Ohio
 circling
 circulating
 circulation
@@ -1306,7 +1300,6 @@ Coin
 cold
 Colesville
 Colesville [New York]
-Colesville, New York
 collected
 collectively
 color
@@ -1963,7 +1956,6 @@ dethroned
 dethroning
 Detroit
 Detroit [Michigan]
-Detroit, Michigan
 deviating
 device
 devices
@@ -2663,7 +2655,6 @@ famines
 famished
 Far
 Far West [Missouri]
-Far West, Missouri
 fared
 Farewell
 farm
@@ -2697,7 +2688,6 @@ Favored
 favors
 Fayette
 Fayette [New York]
-Fayette, New York
 Fear
 Fear of God
 feared
@@ -2800,7 +2790,6 @@ firstlings
 fish
 fishes
 Fishing River [Missouri]
-Fishing River, Missouri
 fists
 fit
 five
@@ -3299,7 +3288,6 @@ harm
 harmless
 Harmony
 Harmony [Pennsylvania]
-Harmony, Pennsylvania
 harp
 Harris
 Harrison
@@ -3466,7 +3454,6 @@ hinted
 Hiram
 Hiram Page
 Hiram [Ohio]
-Hiram, Ohio
 hire
 hired
 hireling
@@ -3670,7 +3657,6 @@ indebted
 indeed
 Independence
 Independence [Missouri]
-Independence, Missouri
 Independent
 Independently
 Indian Tribes
@@ -3839,7 +3825,6 @@ J
 Jabal
 Jackson
 Jackson County [Missouri]
-Jackson County, Missouri
 Jacob
 Jacob Scott
 Jacobite
@@ -4016,7 +4001,6 @@ kinsfolk
 Kirtland
 Kirtland Temple
 Kirtland [Ohio]
-Kirtland, Ohio
 Kish
 Kishkumen
 Kiss
@@ -4436,7 +4420,6 @@ managing
 Manasseh
 Manchester
 Manchester [New York]
-Manchester, New York
 manfully
 mangled
 Manifest
@@ -4508,7 +4491,6 @@ mattock
 may
 mayest
 McIlwaine's Bend [Missouri]
-McIlwaine's Bend, Missouri
 me
 Mean
 meaneth
@@ -4797,7 +4779,6 @@ Naught
 Nauvoo
 Nauvoo House
 Nauvoo [Illinois]
-Nauvoo, Illinois
 navel
 Nay
 Nazareth
@@ -5148,7 +5129,6 @@ Palestina
 palms
 Palmyra
 Palmyra [New York]
-Palmyra, New York
 palsy
 pangs
 parable
@@ -5271,7 +5251,6 @@ permitted
 perpetuated
 Perplexities
 Perrysburg [New York]
-Perrysburg, New York
 Persecute
 persecuted
 persecutest
@@ -5312,8 +5291,6 @@ Pestilence
 pestilences
 Peter
 Peter Haws
-Peter Whitmer, Jr.
-Peter Whitmer, Sr.
 Peterson
 Petition
 petitions
@@ -5786,7 +5763,6 @@ Ramah
 Ramath
 Rameumptom
 Ramus [Illinois]
-Ramus, Illinois
 ran
 Ranks
 ransom
@@ -6253,12 +6229,10 @@ Salamander
 Salamander Letter
 Salem
 Salem [Massachusetts]
-Salem, Massachusetts
 sally
 sallying
 salt
 Salt Lake City [Utah]
-Salt Lake City, Utah
 salted
 Salutation
 salutations
@@ -6429,7 +6403,6 @@ sendeth
 sending
 Seneca
 Seneca County [New York]
-Seneca County, New York
 Senine
 sense
 sensual
@@ -6504,7 +6477,6 @@ share
 Shared
 Sharon
 Sharon [Vermont]
-Sharon, Vermont
 sharp
 sharper
 sharply
@@ -6884,7 +6856,6 @@ spreadeth
 spreading
 Spring
 Spring Hill [Missouri]
-Spring Hill, Missouri
 Springing
 springs
 sprinkle
@@ -7382,7 +7353,6 @@ Thomas B. Marsh
 Thomas Grover
 Thompson
 Thompson [Ohio]
-Thompson, Ohio
 Thorn
 thorns
 those
