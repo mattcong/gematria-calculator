@@ -8,7 +8,7 @@ const getTextName = (text: string) => {
     case "apocrypha":
       return <span>The Biblical Apocrypha</span>
     case "mormon":
-      return <span>Mormon Scriptures</span>
+      return <span>The Mormon Scriptures</span>
     default:
       return text
   }
