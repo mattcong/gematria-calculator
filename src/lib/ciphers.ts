@@ -23,10 +23,15 @@ export const simpleAlphabet: SimpleAlphabet = new SimpleAlphabet(regular)
 
 export const multiple6Alphabet: MultipleAlphabet = new MultipleAlphabet(6, regular)
 
+export const customAlphabet: SimpleAlphabet = new SimpleAlphabet(regular, {
+  mapping: Array.from({ length: 26 }, (_, i) => i + 10)
+})
+
 export const ciphers: { [key: string]: Alphabet } = {
   "Standard Gematria": standardAlphabet.use(),
   "Pythagorean Gematria": pythagoreanAlphabet.use(),
   "Reverse Pythagorean Gematria": reversePythagoreanAlphabet.use(),
   "Simple Gematria": simpleAlphabet.use(),
   "Multiple 6 Gematria": multiple6Alphabet.use(),
+  "Alphanumeric Qabbala": customAlphabet.use(),
 }
