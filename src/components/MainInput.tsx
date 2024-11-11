@@ -119,6 +119,7 @@ const TextSelect = ({
           <option value="default">No Text</option>
           <option value="kjv">Holy Bible (KJV)</option>
           <option value="apocrypha">Apocrypha</option>
+          <option value="mormon">Mormon Scriptures</option>
         </select>
       </div>
     </>

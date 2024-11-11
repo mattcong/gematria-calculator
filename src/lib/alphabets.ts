@@ -4,19 +4,27 @@ export class SimpleAlphabet {
   alphabet: Alphabet
   isReverse: Boolean
 
-  constructor(isReverse: Boolean) {
+  constructor(isReverse: Boolean, options?: { mapping?: number[] }) {
     this.alphabet = {}
     this.isReverse = isReverse
 
-    if (!isReverse) {
-      for (let i = 1; i < 27; i++) {
-        this.alphabet[String.fromCharCode(i + 64)] = i
+    if (options && options.mapping) {
+      // Use the custom mapping
+      for (let i = 0; i < 26; i++) {
+        this.alphabet[String.fromCharCode(i + 65)] = options.mapping[i]
       }
-    }
-    if (isReverse) {
-      let count = 1
-      for (let i = 26; i > 0; i--) {
-        this.alphabet[String.fromCharCode(i + 64)] = count++
+    } else {
+      // Use the default mapping
+      if (!isReverse) {
+        for (let i = 1; i < 27; i++) {
+          this.alphabet[String.fromCharCode(i + 64)] = i
+        }
+      }
+      if (isReverse) {
+        let count = 1
+        for (let i = 26; i > 0; i--) {
+          this.alphabet[String.fromCharCode(i + 64)] = count++
+        }
       }
     }
   }
