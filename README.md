@@ -12,20 +12,21 @@ Deployed on Vercel.
 
 The app uses various traditional and non-traditional ciphers:
 
-Standard / Reverse Standard
+Standard
+![standard](/docs/images/standard-cipher.jpg)
 
-![standard](https://user-images.githubusercontent.com/80398444/168562813-b3e49e03-3ea1-4683-819e-a5d5b253895a.jpg)
-![reversestandard](https://user-images.githubusercontent.com/80398444/168562832-c4e4d521-9107-4dfb-925f-657b4f35f658.jpg)
+Pythagorean (Reduction) / Reverse Pythagorean
+![pythagorean](/docs/images/pythagorean-cipher.jpg)
+![reversepythagorean](/docs/images/reverse-pythagorean-cipher.jpg)
 
-Pythagorean (aka Reduction) / Reverse Pythagorean
-![pythagorean](https://user-images.githubusercontent.com/80398444/168562862-bcdada20-c0d8-498e-a03a-9ae59774e622.jpg)
-![reversepythagorean](https://user-images.githubusercontent.com/80398444/168562878-193efaeb-f267-470b-bcdc-b6a84575c8b5.jpg)
+Simple (English Ordinal)
+![simple](/docs/images/simple-cipher.jpg)
 
-Simple (aka Ordinal)
-![simple](https://user-images.githubusercontent.com/80398444/168562938-76cd19cc-a288-4307-93f7-3dd94f7f7448.jpg)
+Multiple 6
+![multiplesix](/docs/images/multiple-six-cipher.jpg)
 
-Multiple 6 (often called Base 6 Gematria online, renamed here so as not to be confused with base number systems)
-![multiplesix](https://user-images.githubusercontent.com/80398444/168562996-999d7d42-18b2-4eaa-a7f5-2feed0442ff2.jpg)
+Alphanumeric Quabbala
+![alphanumeric](/docs/images/alphanumeric-cipher.jpg)
 
 Ciphers are created from alphabet classes that assign A - Z values according to specific patterns.
 
@@ -37,10 +38,12 @@ This means any number of custom ciphers can be made using these patterns (even t
 
 ## To do 🔜
 
-- ~Link to all shared words on result page~
-- ~Light / dark theme toggle~
-- Complete information pages
-- Search history
-- Hebrew language support
+- Special number identification (prime, triangular, square, Fibonacci)
+- Prime value factorization
 - Base class that creates alphabet values from radix
+- Search history
+- Multi-word relationship identification: arithmetic (value) / geometric (ratio) sequence detection / amicable numbers
+  - Word sequences
+  - Bulk text analysis
+- Hebrew language support
 - Custom cipher UI
