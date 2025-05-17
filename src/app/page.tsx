@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import MainInput from '../components/MainInput'
 import { DisplayWordResults, DisplayNumberResults } from '../components/DisplayWords'
 import { WordListMap } from '../types/WordListMap'
@@ -20,28 +20,20 @@ export default function Home() {
   const [loading, setLoading] = useState(false)
   const [isNumber, setIsNumber] = useState(false)
 
-  const handleCalculateAlphabet = async (cipher: string, text: string) => {
+  const handleCalculateAlphabet = useCallback(async (cipher: string, text: string) => {
     setLoading(true)
     try {
       const response = await fetch(`/api/calculate-alphabet?cipher=${cipher}&text=${text}`)
       const data = await response.json()
-      if (response.ok) {
-        setCalculatedWordLists((prevMaps: WordListMap) => ({
-          ...prevMaps,
-          ...data,
-        }))
-        return data
-      } else {
-        console.log(data)
-        throw new Error(`Failed to fetch data from the API: ${data.error || 'Unknown error'}`)
+      if (!response.ok) {
+        throw new Error(`Failed to calculate alphabet: ${data.error ?? 'Unknown error'}`)
       }
-    } catch (error) {
-      console.error('Error in handleCalculateAlphabet:', error)
-      throw error
+      setCalculatedWordLists((prev) => ({ ...prev, ...data }))
+      return data
     } finally {
       setLoading(false)
     }
-  }
+  }, [])
 
   const handleCalculateWord = async (word: string, cipher: string, text: string) => {
     setLoading(true)
@@ -67,7 +59,7 @@ export default function Home() {
           setCalculationResult(result)
         }
       } else {
-        throw new Error(`Failed to fetch data from the API: ${data.message || 'Unknown error'}`)
+        throw new Error(`Failed to calculate word: ${data.message ?? 'Unknown error'}`)
       }
     } catch (error) {
       console.error('Error in handleCalculateWord:', error)
@@ -116,18 +108,10 @@ export default function Home() {
   const { cipher, text } = searchOptions
 
   useEffect(() => {
-    if (calculatedWordLists[`${cipher}`]) {
-      return
+    if (!calculatedWordLists[cipher]) {
+      handleCalculateAlphabet(cipher, text)
     }
-    handleCalculateAlphabet(cipher, text)
-  }, [cipher, text, calculatedWordLists])
-
-  useEffect(() => {
-    if (Object.keys(calculatedWordLists).length > 0) {
-      setCalculatedWordLists({})
-    }
-    handleCalculateAlphabet(cipher, text)
-  }, [text, cipher])
+  }, [cipher, text, calculatedWordLists, handleCalculateAlphabet])
 
   useEffect(() => {
     const handleScroll = () => {
