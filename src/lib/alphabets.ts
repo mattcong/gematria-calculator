@@ -1,10 +1,10 @@
-import { Alphabet } from "../types/Alphabet"
+import { Alphabet } from '../types/Alphabet'
 
 export class SimpleAlphabet {
   alphabet: Alphabet
-  isReverse: Boolean
+  isReverse: boolean
 
-  constructor(isReverse: Boolean, options?: { mapping?: number[] }) {
+  constructor(isReverse: boolean, options?: { mapping?: number[] }) {
     this.alphabet = {}
     this.isReverse = isReverse
 
@@ -73,7 +73,7 @@ export class IncrementalAlphabet extends SimpleAlphabet {
     this.incrementBy = units
     this.exceptions = exceptions
 
-    let numbers: number[] = []
+    const numbers: number[] = []
     const step = Math.ceil(26 / units.length)
     for (const n of units) {
       for (let i = 1; i <= step; i++) {

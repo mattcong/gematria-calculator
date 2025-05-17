@@ -1,20 +1,20 @@
-"use client"
+'use client'
 
-import { useState, useEffect } from "react"
-import MainInput from "../components/MainInput"
-import { DisplayWordResults, DisplayNumberResults } from "../components/DisplayWords"
-import { WordListMap } from "../types/WordListMap"
-import { CalculationResult } from "../types/CalculationResult"
-import { removeCalculatedWordAndShuffle } from "@/lib/removeCalculatedWordAndShuffle"
-import { SearchOptions } from "../types/SearchOptions"
-import { HandUp } from "@/components/svg/HandUp"
+import { useState, useEffect } from 'react'
+import MainInput from '../components/MainInput'
+import { DisplayWordResults, DisplayNumberResults } from '../components/DisplayWords'
+import { WordListMap } from '../types/WordListMap'
+import { CalculationResult } from '../types/CalculationResult'
+import { removeCalculatedWordAndShuffle } from '@/lib/removeCalculatedWordAndShuffle'
+import { SearchOptions } from '../types/SearchOptions'
+import { HandUp } from '@/components/svg/HandUp'
 
 export default function Home() {
   const [calculationResult, setCalculationResult] = useState<CalculationResult | null>(null)
   const [calculatedWordLists, setCalculatedWordLists] = useState<WordListMap>({})
   const [searchOptions, setSearchOptions] = useState<SearchOptions>({
-    cipher: "Standard Gematria",
-    text: "apocrypha",
+    cipher: 'Standard Gematria',
+    text: 'apocrypha',
   })
   const [showSearchButton, setShowSearchButton] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -33,10 +33,10 @@ export default function Home() {
         return data
       } else {
         console.log(data)
-        throw new Error(`Failed to fetch data from the API: ${data.error || "Unknown error"}`)
+        throw new Error(`Failed to fetch data from the API: ${data.error || 'Unknown error'}`)
       }
     } catch (error) {
-      console.error("Error in handleCalculateAlphabet:", error)
+      console.error('Error in handleCalculateAlphabet:', error)
       throw error
     } finally {
       setLoading(false)
@@ -47,7 +47,7 @@ export default function Home() {
     setLoading(true)
     try {
       const response = await fetch(
-        `/api/calculate-word?word=${word}&cipher=${encodeURIComponent(cipher)}`
+        `/api/calculate-word?word=${word}&cipher=${encodeURIComponent(cipher)}`,
       )
       const data = await response.json()
       if (response.ok) {
@@ -67,10 +67,10 @@ export default function Home() {
           setCalculationResult(result)
         }
       } else {
-        throw new Error(`Failed to fetch data from the API: ${data.message || "Unknown error"}`)
+        throw new Error(`Failed to fetch data from the API: ${data.message || 'Unknown error'}`)
       }
     } catch (error) {
-      console.error("Error in handleCalculateWord:", error)
+      console.error('Error in handleCalculateWord:', error)
       throw error
     } finally {
       setLoading(false)
@@ -80,7 +80,7 @@ export default function Home() {
   const handleCalculateNumber = (number: string, cipher: string, text: string) => {
     const shared = calculatedWordLists[`${cipher}`]
     const words: string[] = shared[Number(number)]
-    const filteredWords = removeCalculatedWordAndShuffle(words, "")
+    const filteredWords = removeCalculatedWordAndShuffle(words, '')
 
     if (calculatedWordLists[`${cipher}`]) {
       const result = {
@@ -95,8 +95,8 @@ export default function Home() {
 
   const handleCalculate = (value: string, cipher: string, text: string) => {
     const isNumber = (value: string) => /^\d+$/.test(value)
-    const formattedNumberInput = value.replaceAll(" ", "")
-    
+    const formattedNumberInput = value.replaceAll(' ', '')
+
     if (isNumber(formattedNumberInput)) {
       setIsNumber(true)
       handleCalculateNumber(formattedNumberInput, cipher, text)
@@ -109,7 +109,7 @@ export default function Home() {
   const handleShowSearch = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     })
   }
 
@@ -120,14 +120,14 @@ export default function Home() {
       return
     }
     handleCalculateAlphabet(cipher, text)
-  }, [cipher])
+  }, [cipher, text, calculatedWordLists])
 
   useEffect(() => {
     if (Object.keys(calculatedWordLists).length > 0) {
       setCalculatedWordLists({})
     }
     handleCalculateAlphabet(cipher, text)
-  }, [text])
+  }, [text, cipher])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -137,9 +137,9 @@ export default function Home() {
         setShowSearchButton(false)
       }
     }
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener('scroll', handleScroll)
     return () => {
-      window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener('scroll', handleScroll)
     }
   }, [])
 
@@ -160,12 +160,12 @@ export default function Home() {
       {showSearchButton && (
         <button
           style={{
-            all: "unset",
-            position: "fixed",
+            all: 'unset',
+            position: 'fixed',
             top: 20,
             right: 20,
             zIndex: 1,
-            cursor: "pointer",
+            cursor: 'pointer',
           }}
           onClick={handleShowSearch}
         >

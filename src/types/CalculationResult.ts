@@ -1,6 +1,6 @@
 export type CalculationResult = {
-  word?: string,
-  cipher: string,
+  word?: string
+  cipher: string
   value: string
   sharedWords: string[]
   text: string

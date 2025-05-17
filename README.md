@@ -25,7 +25,7 @@ Simple (English Ordinal)
 Multiple 6
 ![multiplesix](/docs/images/multiple-six-cipher.jpg)
 
-Alphanumeric Quabbala
+Alphanumeric Qabbala
 ![alphanumeric](/docs/images/alphanumeric-cipher.jpg)
 
 Ciphers are created from alphabet classes that assign A - Z values according to specific patterns.

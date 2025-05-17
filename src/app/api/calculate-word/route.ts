@@ -1,18 +1,18 @@
-import { Alphabet } from "../../../types/Alphabet"
+import { Alphabet } from '../../../types/Alphabet'
 
-import { ciphers } from "../../../lib/ciphers"
-import { calculate } from "../../../lib/calculate"
-import { NextRequest, NextResponse } from "next/server"
+import { ciphers } from '../../../lib/ciphers'
+import { calculate } from '../../../lib/calculate'
+import { NextRequest, NextResponse } from 'next/server'
 
 const headers = {
-  "Content-Type": "application/json",
+  'Content-Type': 'application/json',
 }
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest) {
   try {
     const url = new URL(req.url)
-    const word = `${url.searchParams.get("word")}`
-    const cipher = `${url.searchParams.get("cipher")}`
+    const word = `${url.searchParams.get('word')}`
+    const cipher = `${url.searchParams.get('cipher')}`
 
     const alphabet: Alphabet = ciphers[cipher]
     const inputValue = calculate(word, alphabet)
@@ -22,7 +22,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
       {
         status: 200,
         headers: headers,
-      }
+      },
     )
     return response
   } catch (error) {

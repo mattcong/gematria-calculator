@@ -1,7 +1,7 @@
-import { useState } from "react"
-import LoadingSpinner from "./LoadingSpinner"
-import { SearchOptions } from "../types/SearchOptions"
-import { ciphers } from "@/lib/ciphers"
+import { useState } from 'react'
+import LoadingSpinner from './LoadingSpinner'
+import { SearchOptions } from '../types/SearchOptions'
+import { ciphers } from '@/lib/ciphers'
 
 type wordCalculate = (value: string, cipher: string, text: string) => Promise<void>
 type numberCalculate = (value: string, cipher: string, text: string) => void
@@ -21,7 +21,7 @@ const MainInput = ({
 }: MainInputProps) => {
   const { cipher, text } = searchOptions
 
-  const [word, setWord] = useState("")
+  const [word, setWord] = useState('')
   const [showTexts, setShowTexts] = useState(text && true)
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,7 +36,7 @@ const MainInput = ({
   }
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    await handleCalculate(word, cipher, text || "")
+    await handleCalculate(word, cipher, text || '')
   }
 
   const showTextDropdown = () => setShowTexts(true)
@@ -57,7 +57,7 @@ const MainInput = ({
             />
           </div>
           <button className="button" type="submit" disabled={loading}>
-            {loading ? <LoadingSpinner /> : "Go"}
+            {loading ? <LoadingSpinner /> : 'Go'}
           </button>
         </div>
         <div className="controls-container">

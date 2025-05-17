@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 
 const FormattedWords = ({ words }: { words: string[] }) => {
   const [showAll, setShowAll] = useState(false)
-  const [formattedDisplayedWords, setFormattedDisplayedWords] = useState("false")
+  const [formattedDisplayedWords, setFormattedDisplayedWords] = useState('false')
 
   const formatWordList = (words: string[], hiddenWords: boolean) => {
     if (words.length === 1) {
@@ -10,9 +10,9 @@ const FormattedWords = ({ words }: { words: string[] }) => {
     }
     if (words.length > 1 && !hiddenWords) {
       const lastWord = words.pop()
-      return `${words.join(", ")} and ${lastWord}.`
+      return `${words.join(', ')} and ${lastWord}.`
     }
-    return words.join(", ")
+    return words.join(', ')
   }
 
   const numberOfDisplayWords = 40
@@ -34,11 +34,11 @@ const FormattedWords = ({ words }: { words: string[] }) => {
       {formattedDisplayedWords}
       {hasHiddenWords && (
         <>
-          {" "}
+          {' '}
           <a
             role="button"
             onClick={() => setShowAll(true)}
-            style={{ textDecoration: "underline", cursor: "pointer" }}
+            style={{ textDecoration: 'underline', cursor: 'pointer' }}
           >
             and {numberOfHiddenWords} more.
           </a>

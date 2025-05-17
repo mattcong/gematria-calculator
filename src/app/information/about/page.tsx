@@ -1,6 +1,6 @@
-import { Philosophorum } from "@/components/svg/Philosophorum"
-import AppBar from "@/components/AppBar"
-import Link from "next/link"
+import { Philosophorum } from '@/components/svg/Philosophorum'
+import AppBar from '@/components/AppBar'
+import Link from 'next/link'
 
 const Page = () => {
   return (
@@ -11,7 +11,7 @@ const Page = () => {
         </Link>
       </AppBar>
       <div className="information-container">
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Philosophorum />
         </div>
         <div className="information-wrap">

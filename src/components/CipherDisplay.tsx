@@ -1,5 +1,5 @@
-import { calculate } from "@/lib/calculate"
-import { Alphabet } from "@/types/Alphabet"
+import { calculate } from '@/lib/calculate'
+import { Alphabet } from '@/types/Alphabet'
 
 const CipherDisplay = ({ letters, cipher }: { letters: string[]; cipher: Alphabet }) => {
   return (

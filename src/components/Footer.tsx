@@ -1,22 +1,22 @@
-"use client"
+'use client'
 
-import Link from "next/link"
-import { useEffect, useState } from "react"
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 const Footer = () => {
-  const [theme, setTheme] = useState("dark")
+  const [theme, setTheme] = useState('dark')
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem("theme") || "dark"
+    const storedTheme = localStorage.getItem('theme') || 'dark'
     document.body.className = `${storedTheme}-theme`
     setTheme(storedTheme)
   }, [])
 
   const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark"
+    const newTheme = theme === 'dark' ? 'light' : 'dark'
     document.body.className = `${newTheme}-theme`
     setTheme(newTheme)
-    localStorage.setItem("theme", newTheme)
+    localStorage.setItem('theme', newTheme)
   }
 
   return (
@@ -28,8 +28,8 @@ const Footer = () => {
         <Link href="/information/ciphers">Ciphers</Link>
       </div>
       <div />
-      <button onClick={toggleTheme} style={{ all: "unset", cursor: "pointer", textAlign: "right" }}>
-        {theme === "light" ? <LightIcon /> : <DarkIcon />}
+      <button onClick={toggleTheme} style={{ all: 'unset', cursor: 'pointer', textAlign: 'right' }}>
+        {theme === 'light' ? <LightIcon /> : <DarkIcon />}
       </button>
     </div>
   )

@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextRequest, NextResponse } from 'next/server'
 import {
   standardAlphabet,
   pythagoreanAlphabet,
@@ -6,41 +6,48 @@ import {
   simpleAlphabet,
   multiple6Alphabet,
   customAlphabet,
-} from "../../../lib/ciphers"
-import { preCalculateValues } from "../../../lib/calculate"
-import fs from "fs"
-import path from "path"
+} from '../../../lib/ciphers'
+import { preCalculateValues } from '../../../lib/calculate'
+import fs from 'fs'
+import path from 'path'
 
 const headers = {
-  "Content-Type": "application/json",
+  'Content-Type': 'application/json',
 }
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest) {
   try {
     const url = new URL(req.url)
-    const cipher = `${url.searchParams.get("cipher")}`
-    const text = `${url.searchParams.get("text")}`
+    const cipher = `${url.searchParams.get('cipher')}`
+    const text = `${url.searchParams.get('text')}`
 
-    const localKjv = path.join(process.cwd(), "files", "bible-kjv.txt")
-    const prodKjv = "/var/task/files/bible-kjv.txt"
+    const localKjv = path.join(process.cwd(), 'files', 'bible-kjv.txt')
+    const prodKjv = '/var/task/files/bible-kjv.txt'
 
-    const localApocrypha = path.join(process.cwd(), "files", "apocrypha.txt")
-    const prodApocrypha = "/var/task/files/apocrypha.txt"
+    const localApocrypha = path.join(process.cwd(), 'files', 'apocrypha.txt')
+    const prodApocrypha = '/var/task/files/apocrypha.txt'
 
-    const localMormon = path.join(process.cwd(), "files", "mormon.txt")
-    const prodMormon = "/var/task/files/mormon.txt"
+    const localMormon = path.join(process.cwd(), 'files', 'mormon.txt')
+    const prodMormon = '/var/task/files/mormon.txt'
 
-    const localDefault = path.join(process.cwd(), "files", "british-english.txt")
-    const prodDefault = "/var/task/files/british-english.txt"
+    const localDefault = path.join(process.cwd(), 'files', 'british-english.txt')
+    const prodDefault = '/var/task/files/british-english.txt'
 
-    const kjvFile = process.env.NODE_ENV === "development" ? localKjv : prodKjv
-    const apocryphaFile = process.env.NODE_ENV === "development" ? localApocrypha : prodApocrypha
-    const mormonFile = process.env.NODE_ENV === "development" ? localMormon : prodMormon
-    const defaultFile = process.env.NODE_ENV === "development" ? localDefault : prodDefault
+    const kjvFile = process.env.NODE_ENV === 'development' ? localKjv : prodKjv
+    const apocryphaFile = process.env.NODE_ENV === 'development' ? localApocrypha : prodApocrypha
+    const mormonFile = process.env.NODE_ENV === 'development' ? localMormon : prodMormon
+    const defaultFile = process.env.NODE_ENV === 'development' ? localDefault : prodDefault
 
-    const filePath = text === "kjv" ? kjvFile : text === "apocrypha" ? apocryphaFile : text === "mormon" ? mormonFile : defaultFile
+    const filePath =
+      text === 'kjv'
+        ? kjvFile
+        : text === 'apocrypha'
+          ? apocryphaFile
+          : text === 'mormon'
+            ? mormonFile
+            : defaultFile
 
-    const wordList = fs.readFileSync(filePath, "utf-8").toString().split("\n")
+    const wordList = fs.readFileSync(filePath, 'utf-8').toString().split('\n')
     const wordListMap = preCalculateValues(wordList, getCipher(cipher))
 
     const response = new NextResponse(JSON.stringify({ [cipher]: wordListMap }), {
@@ -60,19 +67,19 @@ export async function GET(req: NextRequest, res: NextResponse) {
 
 function getCipher(cipher: string) {
   switch (cipher) {
-    case "Standard Gematria":
+    case 'Standard Gematria':
       return standardAlphabet.use()
-    case "Pythagorean Gematria":
+    case 'Pythagorean Gematria':
       return pythagoreanAlphabet.use()
-    case "Reverse Pythagorean Gematria":
+    case 'Reverse Pythagorean Gematria':
       return reversePythagoreanAlphabet.use()
-    case "Simple Gematria":
+    case 'Simple Gematria':
       return simpleAlphabet.use()
-    case "Multiple 6 Gematria":
+    case 'Multiple 6 Gematria':
       return multiple6Alphabet.use()
-    case "Alphanumeric Qabbala":
+    case 'Alphanumeric Qabbala':
       return customAlphabet.use()
     default:
-      throw new Error("Unknown cipher")
+      throw new Error('Unknown cipher')
   }
 }

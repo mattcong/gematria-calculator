@@ -1,12 +1,12 @@
 export const removeCalculatedWordAndShuffle = (
   wordsArray: string[],
-  wordToRemove: string
+  wordToRemove: string,
 ): string[] => {
   if (!wordsArray) {
     return []
   }
 
-  const normalize = (word: string) => word.replace(/\r/g, "").toLowerCase()
+  const normalize = (word: string) => word.replace(/\r/g, '').toLowerCase()
   const normalizedStringToRemove = normalize(wordToRemove)
   const filteredWords = wordsArray.filter((item) => normalize(item) !== normalizedStringToRemove)
 

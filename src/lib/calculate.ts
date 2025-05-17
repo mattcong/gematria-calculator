@@ -1,7 +1,7 @@
-import { Alphabet } from "../types/Alphabet"
+import { Alphabet } from '../types/Alphabet'
 
 export function calculate(word: string, alphabet: Alphabet): number {
-  let result: number[] = []
+  const result: number[] = []
   for (const letter in alphabet) {
     const letters = [...word.toUpperCase()]
     letters.forEach((e) => {
