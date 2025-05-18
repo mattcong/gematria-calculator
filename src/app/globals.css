@@ -135,6 +135,12 @@ a {
   background-color: var(--element-bg);
 }
 
+.input-error {
+  margin: 6px;
+  text-align: center;
+  color: red;
+}
+
 .input {
   width: calc(100% - 20px);
   height: calc(var(--fs-body-md) + 25px);
@@ -339,6 +345,15 @@ a:focus {
     padding: 4px 2px;
     min-width: 20px;
   }
+}
+
+.scroll-button {
+  all: unset;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+  cursor: pointer;
 }
 
 .svg {

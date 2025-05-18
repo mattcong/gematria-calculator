@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-const Footer = () => {
+export const Footer = () => {
   const [theme, setTheme] = useState('dark')
 
   useEffect(() => {
@@ -54,5 +54,3 @@ const DarkIcon = () => (
     <circle cx="10" cy="10" r="9" transform="rotate(-90 10 10)" stroke="#3EA13B" strokeWidth="2" />
   </svg>
 )
-
-export default Footer

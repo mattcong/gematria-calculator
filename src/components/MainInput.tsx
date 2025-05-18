@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import LoadingSpinner from './LoadingSpinner'
-import { SearchOptions } from '../types/SearchOptions'
+import { SearchOptions } from '@/types/SearchOptions'
 import { ciphers } from '@/lib/ciphers'
 
 type wordCalculate = (value: string, cipher: string, text: string) => Promise<void>
@@ -13,7 +13,7 @@ type MainInputProps = {
   handleCalculate: wordCalculate | numberCalculate
 }
 
-const MainInput = ({
+export const MainInput = ({
   loading,
   searchOptions,
   setSearchOptions,
@@ -125,5 +125,3 @@ const TextSelect = ({
     </>
   )
 }
-
-export default MainInput

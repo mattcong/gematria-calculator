@@ -1,5 +1,5 @@
 import { Philosophorum } from '@/components/svg/Philosophorum'
-import AppBar from '@/components/AppBar'
+import { AppBar } from '@/components/AppBar'
 import Link from 'next/link'
 
 const Page = () => {

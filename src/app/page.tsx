@@ -1,134 +1,49 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
-import MainInput from '../components/MainInput'
-import { DisplayWordResults, DisplayNumberResults } from '../components/DisplayWords'
-import { WordListMap } from '../types/WordListMap'
-import { CalculationResult } from '../types/CalculationResult'
-import { removeCalculatedWordAndShuffle } from '@/lib/removeCalculatedWordAndShuffle'
-import { SearchOptions } from '../types/SearchOptions'
+import { useState, useEffect } from 'react'
+import { MainInput } from '@/components/MainInput'
+import { DisplayWordResults, DisplayNumberResults } from '@/components/DisplayWords'
+import { SearchOptions } from '@/types/SearchOptions'
 import { HandUp } from '@/components/svg/HandUp'
+import { useAlphabet } from '@/hooks/useAlphabet'
+import { useWordCalculation } from '@/hooks/useWordCalculation'
 
 export default function Home() {
-  const [calculationResult, setCalculationResult] = useState<CalculationResult | null>(null)
-  const [calculatedWordLists, setCalculatedWordLists] = useState<WordListMap>({})
   const [searchOptions, setSearchOptions] = useState<SearchOptions>({
     cipher: 'Standard Gematria',
     text: 'apocrypha',
   })
   const [showSearchButton, setShowSearchButton] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [isNumber, setIsNumber] = useState(false)
-
-  const handleCalculateAlphabet = useCallback(async (cipher: string, text: string) => {
-    setLoading(true)
-    try {
-      const response = await fetch(`/api/calculate-alphabet?cipher=${cipher}&text=${text}`)
-      const data = await response.json()
-      if (!response.ok) {
-        throw new Error(`Failed to calculate alphabet: ${data.error ?? 'Unknown error'}`)
-      }
-      setCalculatedWordLists((prev) => ({ ...prev, ...data }))
-      return data
-    } finally {
-      setLoading(false)
-    }
-  }, [])
-
-  const handleCalculateWord = async (word: string, cipher: string, text: string) => {
-    setLoading(true)
-    try {
-      const response = await fetch(
-        `/api/calculate-word?word=${word}&cipher=${encodeURIComponent(cipher)}`,
-      )
-      const data = await response.json()
-      if (response.ok) {
-        const { value } = data
-        const shared = calculatedWordLists[`${cipher}`]
-        const words: string[] = shared[value]
-        const filteredWords = removeCalculatedWordAndShuffle(words, word)
-
-        if (calculatedWordLists[`${cipher}`]) {
-          const result = {
-            word: word,
-            cipher: cipher,
-            value: value,
-            sharedWords: filteredWords,
-            text: text,
-          }
-          setCalculationResult(result)
-        }
-      } else {
-        throw new Error(`Failed to calculate word: ${data.message ?? 'Unknown error'}`)
-      }
-    } catch (error) {
-      console.error('Error in handleCalculateWord:', error)
-      throw error
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const handleCalculateNumber = (number: string, cipher: string, text: string) => {
-    const shared = calculatedWordLists[`${cipher}`]
-    const words: string[] = shared[Number(number)]
-    const filteredWords = removeCalculatedWordAndShuffle(words, '')
-
-    if (calculatedWordLists[`${cipher}`]) {
-      const result = {
-        cipher: cipher,
-        value: number,
-        sharedWords: filteredWords,
-        text: text,
-      }
-      setCalculationResult(result)
-    }
-  }
-
-  const handleCalculate = (value: string, cipher: string, text: string) => {
-    const isNumber = (value: string) => /^\d+$/.test(value)
-    const formattedNumberInput = value.replaceAll(' ', '')
-
-    if (isNumber(formattedNumberInput)) {
-      setIsNumber(true)
-      handleCalculateNumber(formattedNumberInput, cipher, text)
-    } else {
-      setIsNumber(false)
-      handleCalculateWord(value, cipher, text)
-    }
-  }
-
-  const handleShowSearch = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    })
-  }
 
   const { cipher, text } = searchOptions
+  const {
+    data: alphabets,
+    loading: alphabetsLoading,
+    error: alphabetsError,
+  } = useAlphabet(cipher, text)
+  const {
+    data: calculationResult,
+    loading: calculationLoading,
+    error: calculationError,
+    calculate,
+  } = useWordCalculation(alphabets)
+
+  const loading = alphabetsLoading || calculationLoading
 
   useEffect(() => {
-    if (!calculatedWordLists[cipher]) {
-      handleCalculateAlphabet(cipher, text)
-    }
-  }, [cipher, text, calculatedWordLists, handleCalculateAlphabet])
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setShowSearchButton(true)
-      } else {
-        setShowSearchButton(false)
-      }
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
+    const onScroll = () => setShowSearchButton(window.scrollY > 300)
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  const handleCalculate = (value: string) => {
+    calculate(value, cipher, text)
+  }
 
   return (
     <div className="search-container">
+      {alphabetsError && <p className="input-error">Error: Failed to load word lists.</p>}
+      {calculationError && <p className="input-error">Error: Unable to calculate word.</p>}
       <MainInput
         loading={loading}
         searchOptions={searchOptions}
@@ -136,22 +51,16 @@ export default function Home() {
         handleCalculate={handleCalculate}
       />
       {calculationResult &&
-        (isNumber ? (
-          <DisplayNumberResults calculationResult={calculationResult} />
-        ) : (
+        (calculationResult.word ? (
           <DisplayWordResults calculationResult={calculationResult} />
+        ) : (
+          <DisplayNumberResults calculationResult={calculationResult} />
         ))}
+
       {showSearchButton && (
         <button
-          style={{
-            all: 'unset',
-            position: 'fixed',
-            top: 20,
-            right: 20,
-            zIndex: 1,
-            cursor: 'pointer',
-          }}
-          onClick={handleShowSearch}
+          className="scroll-button"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           <HandUp />
         </button>

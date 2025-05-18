@@ -1,7 +1,7 @@
 import { calculate } from '@/lib/calculate'
 import { Alphabet } from '@/types/Alphabet'
 
-const CipherDisplay = ({ letters, cipher }: { letters: string[]; cipher: Alphabet }) => {
+export const CipherDisplay = ({ letters, cipher }: { letters: string[]; cipher: Alphabet }) => {
   return (
     <div className="cipher-display-wrap">
       {letters.map((letter) => (
@@ -17,5 +17,3 @@ const CipherDisplay = ({ letters, cipher }: { letters: string[]; cipher: Alphabe
     </div>
   )
 }
-
-export default CipherDisplay

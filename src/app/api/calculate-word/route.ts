@@ -1,36 +1,17 @@
-import { Alphabet } from '../../../types/Alphabet'
+import { NextRequest } from 'next/server'
+import { withErrorHandling } from '@/lib/errors/withErrorHandling'
+import { ApiError } from '@/lib/errors/ApiError'
+import { getRequiredParam } from '@/lib/getRequiredParam'
+import { calculate } from '@/lib/calculate'
+import { ciphers } from '@/lib/ciphers'
 
-import { ciphers } from '../../../lib/ciphers'
-import { calculate } from '../../../lib/calculate'
-import { NextRequest, NextResponse } from 'next/server'
+export const GET = withErrorHandling(async (req: NextRequest) => {
+  const url = new URL(req.url)
+  const word = getRequiredParam(url, 'word')
+  const cipher = getRequiredParam(url, 'cipher')
+  const alphabet = ciphers[cipher]
+  if (!alphabet) throw new ApiError(`Unknown cipher "${cipher}"`, 404)
 
-const headers = {
-  'Content-Type': 'application/json',
-}
-
-export async function GET(req: NextRequest) {
-  try {
-    const url = new URL(req.url)
-    const word = `${url.searchParams.get('word')}`
-    const cipher = `${url.searchParams.get('cipher')}`
-
-    const alphabet: Alphabet = ciphers[cipher]
-    const inputValue = calculate(word, alphabet)
-
-    const response = new NextResponse(
-      JSON.stringify({ word: word, cipher: cipher, value: inputValue }),
-      {
-        status: 200,
-        headers: headers,
-      },
-    )
-    return response
-  } catch (error) {
-    console.error(error)
-    const response = new NextResponse(JSON.stringify({ error: error }), {
-      status: 500,
-      headers: headers,
-    })
-    return response
-  }
-}
+  const value = calculate(word, alphabet)
+  return { word, cipher, value }
+})

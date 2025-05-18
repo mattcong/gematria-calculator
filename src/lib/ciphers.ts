@@ -1,5 +1,5 @@
 import { SimpleAlphabet, MultipleAlphabet, ModularAlphabet, IncrementalAlphabet } from './alphabets'
-import { Alphabet } from '../types/Alphabet'
+import { Alphabet } from '@/types/Alphabet'
 
 const reverse = true
 const regular = false
