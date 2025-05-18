@@ -10,7 +10,7 @@
     "lint:fix": "next lint --fix"
   },
   "dependencies": {
-    "next": "13.5.5",
+    "next": "^14.2.28",
     "react": "^18",
     "react-dom": "^18"
   },
@@ -21,7 +21,7 @@
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8",
-    "eslint-config-next": "13.5.5",
+    "eslint-config-next": "^14.2.28",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.4.0",
     "prettier": "^3.5.3",
