@@ -2,7 +2,7 @@ import { CalculationResult } from '@/types/CalculationResult'
 import FormattedWords from './FormattedWords'
 import { CipherDisplay } from './CipherDisplay'
 import { ciphers } from '@/lib/ciphers'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 
 const getTextName = (text: string) => {
   switch (text) {
@@ -50,15 +50,15 @@ export const DisplayWordResults = ({
 }: {
   calculationResult: CalculationResult
 }) => {
-  const { word, cipher, value, sharedWords, text } = calculationResult
+  const { word = '', cipher, value, sharedWords, text } = calculationResult
 
-  const l = Array.from(word!.toLowerCase().replace(/[^a-z]/g, ''))
+  const computedLetters = useMemo(() => Array.from(word.replace(/[^a-z]/gi, '')), [word])
 
-  const [letters, setLetters] = useState(l)
+  const [letters, setLetters] = useState(computedLetters)
 
   useEffect(() => {
-    setLetters(l)
-  }, [word, value, l])
+    setLetters(computedLetters)
+  }, [computedLetters])
 
   return (
     <div className="result-wrap">

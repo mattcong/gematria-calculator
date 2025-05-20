@@ -23,9 +23,13 @@ export const MainInput = ({
 
   const [word, setWord] = useState('')
   const [showTexts, setShowTexts] = useState(text && true)
+  const [error, setError] = useState<string | null>(null)
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setWord(event.target.value)
+    if (error) {
+      setError(null)
+    }
   }
   const handleCipherSelect = async (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedCipher = event.currentTarget.value
@@ -36,6 +40,11 @@ export const MainInput = ({
   }
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (!word.trim()) {
+      setError('Value is required.')
+      return
+    }
+    setError(null)
     await handleCalculate(word, cipher, text || '')
   }
 
@@ -49,10 +58,10 @@ export const MainInput = ({
           <div className="input-border">
             <input
               className="input"
+              placeholder="Provide a word or number."
               type="text"
               value={word}
               onChange={handleInputChange}
-              required
               disabled={loading}
             />
           </div>
@@ -60,6 +69,11 @@ export const MainInput = ({
             {loading ? <LoadingSpinner /> : 'Go'}
           </button>
         </div>
+        {error && (
+          <p className="input-error" style={{ textAlign: 'left' }}>
+            {error}
+          </p>
+        )}
         <div className="controls-container">
           <div className="select-wrap input-option">
             <CipherSelect value={cipher} onChange={handleCipherSelect} />
