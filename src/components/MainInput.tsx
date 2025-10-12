@@ -130,7 +130,7 @@ const TextSelect = ({
       <label htmlFor="cipher">using</label>
       <div className="select-menu-border">
         <select className="select-menu input-option" value={value} onChange={onChange}>
-          <option value="default">No Text</option>
+          <option value="british-english">No Text</option>
           <option value="kjv">Holy Bible (KJV)</option>
           <option value="apocrypha">Apocrypha</option>
           <option value="mormon">Mormon Scriptures</option>

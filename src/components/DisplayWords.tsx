@@ -12,8 +12,10 @@ const getTextName = (text: string) => {
       return <span>The Biblical Apocrypha</span>
     case 'mormon':
       return <span>The Mormon Scriptures</span>
+    case 'british-english':
+      return <span>The English Dictionary</span>
     default:
-      return text
+      undefined
   }
 }
 
@@ -28,7 +30,7 @@ export const DisplayNumberResults = ({
     <div className="result-wrap">
       {sharedWords.length ? (
         <p>
-          {text && text !== 'default' ? (
+          {getTextName(text) !== undefined ? (
             <span>
               Among words from {getTextName(text)}, the value {value} is shared by:
               <br />

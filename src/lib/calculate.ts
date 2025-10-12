@@ -1,16 +1,16 @@
 import { Alphabet } from '@/types/Alphabet'
 
 export function calculate(word: string, alphabet: Alphabet): number {
-  const result: number[] = []
-  for (const letter in alphabet) {
-    const letters = [...word.toUpperCase()]
-    letters.forEach((e) => {
-      if (letter === e) {
-        result.push(alphabet[letter])
-      }
-    })
+  const normalized = word.toUpperCase()
+  let sum = 0
+  for (let i = 0; i < normalized.length; i++) {
+    const char = normalized[i]
+    const value = alphabet[char]
+    if (value !== undefined) {
+      sum += value
+    }
   }
-  return result.reduce((a, b) => a + b, 0)
+  return sum
 }
 
 export function preCalculateValues(wordList: string[], alphabet: Alphabet) {
