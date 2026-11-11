@@ -1,10 +1,10 @@
 import {
-  standardAlphabet,
+  customAlphabet,
+  multiple6Alphabet,
   pythagoreanAlphabet,
   reversePythagoreanAlphabet,
   simpleAlphabet,
-  multiple6Alphabet,
-  customAlphabet,
+  standardAlphabet,
 } from './ciphers'
 import { ApiError } from './errors/ApiError'
 

@@ -1,4 +1,4 @@
-import { Alphabet } from '@/types/Alphabet'
+import type { Alphabet } from '@/types/Alphabet'
 
 export class SimpleAlphabet {
   alphabet: Alphabet
@@ -8,7 +8,7 @@ export class SimpleAlphabet {
     this.alphabet = {}
     this.isReverse = isReverse
 
-    if (options && options.mapping) {
+    if (options?.mapping) {
       // Use the custom mapping
       for (let i = 0; i < 26; i++) {
         this.alphabet[String.fromCharCode(i + 65)] = options.mapping[i]
@@ -85,7 +85,7 @@ export class IncrementalAlphabet extends SimpleAlphabet {
       this.alphabet[letter] = numbers[i]
 
       const exceptions = this.exceptions
-      if (exceptions && exceptions.length) {
+      if (exceptions?.length) {
         exceptions.forEach((exception) => {
           const { exceptionLetter, exceptionValue } = exception
           if (letter === exceptionLetter) {

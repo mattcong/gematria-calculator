@@ -1,5 +1,7 @@
 export const HandUp = () => (
   <svg
+    aria-hidden="true"
+    focusable="false"
     fill="#000000"
     height="40"
     width="40"

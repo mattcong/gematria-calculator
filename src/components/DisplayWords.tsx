@@ -1,8 +1,8 @@
-import { CalculationResult } from '@/types/CalculationResult'
-import FormattedWords from './FormattedWords'
-import { CipherDisplay } from './CipherDisplay'
+import { useEffect, useMemo, useState } from 'react'
 import { ciphers } from '@/lib/ciphers'
-import { useEffect, useState, useMemo } from 'react'
+import type { CalculationResult } from '@/types/CalculationResult'
+import { CipherDisplay } from './CipherDisplay'
+import FormattedWords from './FormattedWords'
 
 const getTextName = (text: string) => {
   switch (text) {

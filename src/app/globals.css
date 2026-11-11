@@ -144,7 +144,6 @@ a {
 
 .input {
   width: calc(100% - 20px);
-  height: calc(var(--fs-body-md) + 25px);
   background-color: transparent;
   height: var(--input-height);
 
@@ -330,7 +329,6 @@ a:focus {
 
 .cipher-display-tile-wrap {
   text-align: center;
-  min-width: 20px;
   min-width: fit-content;
   margin: 4px 0;
 }

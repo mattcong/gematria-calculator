@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import LoadingSpinner from './LoadingSpinner'
-import { SearchOptions } from '@/types/SearchOptions'
 import { ciphers } from '@/lib/ciphers'
+import type { SearchOptions } from '@/types/SearchOptions'
+import LoadingSpinner from './LoadingSpinner'
 
 type wordCalculate = (value: string, cipher: string, text: string) => Promise<void>
 type numberCalculate = (value: string, cipher: string, text: string) => void
@@ -53,12 +53,11 @@ export const MainInput = ({
   return (
     <form onSubmit={handleSubmit}>
       <div className={`form-wrap`}>
-        <label htmlFor="calculation-input">Find the value of:</label>
+        <label htmlFor="calculation-input">Find the value of a word or number:</label>
         <div className="input-wrap">
           <div className="input-border">
             <input
               className="input"
-              placeholder="Provide a word or number."
               type="text"
               value={word}
               onChange={handleInputChange}
@@ -105,9 +104,9 @@ const CipherSelect = ({
       <label htmlFor="cipher">in</label>
       <div className="select-menu-border">
         <select className="select-menu" value={value} onChange={onChange}>
-          {Object.keys(ciphers).map((cipherName, i) => {
+          {Object.keys(ciphers).map((cipherName) => {
             return (
-              <option key={i} value={cipherName}>
+              <option key={cipherName} value={cipherName}>
                 {cipherName}
               </option>
             )

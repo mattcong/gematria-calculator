@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { Tree } from '@/components/svg/Tree'
 import { AppBar } from '@/components/AppBar'
 import { CipherDisplay } from '@/components/CipherDisplay'
+import { Tree } from '@/components/svg/Tree'
 import { ciphers } from '@/lib/ciphers'
 
 const Page = () => {

@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { DisplayNumberResults, DisplayWordResults } from '@/components/DisplayWords'
 import { MainInput } from '@/components/MainInput'
-import { DisplayWordResults, DisplayNumberResults } from '@/components/DisplayWords'
-import { SearchOptions } from '@/types/SearchOptions'
 import { HandUp } from '@/components/svg/HandUp'
 import { useAlphabet } from '@/hooks/useAlphabet'
 import { useWordCalculation } from '@/hooks/useWordCalculation'
+import type { SearchOptions } from '@/types/SearchOptions'
 
 export default function Home() {
   const [searchOptions, setSearchOptions] = useState<SearchOptions>({
@@ -59,7 +59,9 @@ export default function Home() {
 
       {showSearchButton && (
         <button
+          type="button"
           className="scroll-button"
+          aria-label="Scroll to top"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           <HandUp />

@@ -1,9 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useFetch } from './useFetch'
-import { WordListMap } from '@/types/WordListMap'
+import { useEffect, useState } from 'react'
 import { getCipherKey } from '@/lib/getCipherKey'
+import type { WordListMap } from '@/types/WordListMap'
+import { useFetch } from './useFetch'
 
 export const useAlphabet = (cipher: string, text: string) => {
   const [calculatedAlphabets, setCalculatedAlphabets] = useState<WordListMap | null>(null)

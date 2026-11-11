@@ -1,4 +1,4 @@
-import { Alphabet } from '@/types/Alphabet'
+import type { Alphabet } from '@/types/Alphabet'
 
 export function calculate(word: string, alphabet: Alphabet): number {
   const normalized = word.toUpperCase()

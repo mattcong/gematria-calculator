@@ -28,7 +28,12 @@ export const Footer = () => {
         <Link href="/information/ciphers">Ciphers</Link>
       </div>
       <div />
-      <button onClick={toggleTheme} style={{ all: 'unset', cursor: 'pointer', textAlign: 'right' }}>
+      <button
+        type="button"
+        onClick={toggleTheme}
+        aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+        style={{ all: 'unset', cursor: 'pointer', textAlign: 'right' }}
+      >
         {theme === 'light' ? <LightIcon /> : <DarkIcon />}
       </button>
     </div>
@@ -36,7 +41,15 @@ export const Footer = () => {
 }
 
 const LightIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <path
       d="M10 0C12.6522 0 15.1957 1.05357 17.0711 2.92893C18.9464 4.8043 20 7.34783 20 10C20 12.6522 18.9464 15.1957 17.0711 17.0711C15.1957 18.9464 12.6522 20 10 20L10 10L10 0Z"
       fill="#cc2f2f"
@@ -46,7 +59,15 @@ const LightIcon = () => (
 )
 
 const DarkIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <path
       d="M10 0C7.34784 0 4.8043 1.05357 2.92893 2.92893C1.05357 4.8043 2.00233e-07 7.34783 0 10C-2.00233e-07 12.6522 1.05357 15.1957 2.92893 17.0711C4.80429 18.9464 7.34783 20 10 20L10 10L10 0Z"
       fill="#3EA13B"

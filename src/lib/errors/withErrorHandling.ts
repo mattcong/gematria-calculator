@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 import { ApiError } from './ApiError'
 
 export function withErrorHandling(routeHandler: (req: NextRequest) => Promise<unknown>) {
-  return async function (req: NextRequest) {
+  return async (req: NextRequest) => {
     try {
       const payload = await routeHandler(req)
       return NextResponse.json(payload)

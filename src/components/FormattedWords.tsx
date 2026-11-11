@@ -1,33 +1,32 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+
+const NUMBER_OF_DISPLAY_WORDS = 40
+
+const formatWordList = (list: string[], hiddenWords: boolean) => {
+  if (list.length === 1) {
+    return `${list[0]}.`
+  }
+  if (list.length > 1 && !hiddenWords) {
+    return `${list.slice(0, -1).join(', ')} and ${list[list.length - 1]}.`
+  }
+  return list.join(', ')
+}
 
 const FormattedWords = ({ words }: { words: string[] }) => {
   const [showAll, setShowAll] = useState(false)
-  const [formattedDisplayedWords, setFormattedDisplayedWords] = useState('false')
+  const [renderedWords, setRenderedWords] = useState(words)
 
-  const formatWordList = (words: string[], hiddenWords: boolean) => {
-    if (words.length === 1) {
-      return `${words}.`
-    }
-    if (words.length > 1 && !hiddenWords) {
-      const lastWord = words.pop()
-      return `${words.join(', ')} and ${lastWord}.`
-    }
-    return words.join(', ')
+
+  if (words !== renderedWords) {
+    setRenderedWords(words)
+    setShowAll(false)
   }
 
-  const numberOfDisplayWords = 40
-  const numberOfHiddenWords = words.length - numberOfDisplayWords
-  const hasHiddenWords = words.length > numberOfDisplayWords && !showAll
-  const someWords = hasHiddenWords ? words.slice(0, numberOfDisplayWords) : words
-  const displayedWords = showAll ? words : someWords
+  const numberOfHiddenWords = words.length - NUMBER_OF_DISPLAY_WORDS
+  const hasHiddenWords = words.length > NUMBER_OF_DISPLAY_WORDS && !showAll
+  const displayedWords = hasHiddenWords ? words.slice(0, NUMBER_OF_DISPLAY_WORDS) : words
 
-  useEffect(() => {
-    setShowAll(false)
-  }, [words])
-
-  useEffect(() => {
-    setFormattedDisplayedWords(formatWordList(displayedWords, hasHiddenWords))
-  }, [showAll, words, displayedWords, hasHiddenWords])
+  const formattedDisplayedWords = formatWordList(displayedWords, hasHiddenWords)
 
   return (
     <>
@@ -35,13 +34,13 @@ const FormattedWords = ({ words }: { words: string[] }) => {
       {hasHiddenWords && (
         <>
           {' '}
-          <a
-            role="button"
+          <button
+            type="button"
             onClick={() => setShowAll(true)}
-            style={{ textDecoration: 'underline', cursor: 'pointer' }}
+            style={{ all: 'unset', textDecoration: 'underline', cursor: 'pointer' }}
           >
             and {numberOfHiddenWords} more.
-          </a>
+          </button>
         </>
       )}
     </>

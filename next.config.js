@@ -1,9 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    outputFileTracingIncludes: {
-      '/api/calculate-alphabet': ['files/**/*'],
-    },
+  outputFileTracingIncludes: {
+    '/api/calculate-alphabet': ['files/**/*'],
   },
 }
 

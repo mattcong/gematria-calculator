@@ -1,11 +1,11 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { ApiError } from '@/lib/errors/ApiError'
 import { fetcher } from '@/lib/fetcher'
 import { removeCalculatedWordAndShuffle } from '@/lib/removeCalculatedWordAndShuffle'
-import { CalculationResult } from '@/types/CalculationResult'
-import { WordListMap } from '@/types/WordListMap'
+import type { CalculationResult } from '@/types/CalculationResult'
+import type { WordListMap } from '@/types/WordListMap'
 
 interface WordCalculationReturn {
   data: CalculationResult | null
